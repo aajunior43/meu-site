@@ -49,11 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function handleScroll() {
         if (window.scrollY > 100) {
-            header.style.background = 'rgba(255, 255, 255, 0.98)';
-            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            header.classList.add('scrolled');
         } else {
-            header.style.background = 'rgba(255, 255, 255, 0.95)';
-            header.style.boxShadow = 'none';
+            header.classList.remove('scrolled');
         }
         
         highlightActiveSection();
@@ -114,11 +112,15 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             link.classList.remove('active');
             const linkHref = link.getAttribute('href');
-            
-            if (linkHref === currentPage || 
+            const isActive = linkHref === currentPage || 
                 (currentPage === '' && linkHref === 'index.html') ||
-                (currentPage === 'index.html' && linkHref === 'index.html')) {
+                (currentPage === 'index.html' && linkHref === 'index.html');
+
+            if (isActive) {
                 link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
             }
         });
     }
