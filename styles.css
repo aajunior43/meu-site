@@ -4662,3 +4662,241 @@ html {
     90% { opacity: 1; }
     100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
+
+/* ===== FUNDO DE ESTRELAS ===== */
+.stars-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+.stars-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+}
+
+.stars-layer-1 {
+    animation: twinkle 4s ease-in-out infinite alternate;
+    background-size: 250px 250px;
+}
+
+.stars-layer-2 {
+    animation: twinkle 6s ease-in-out infinite alternate-reverse;
+    background-size: 300px 300px;
+    opacity: 0.7;
+}
+
+.stars-layer-3 {
+    animation: twinkle 8s ease-in-out infinite alternate;
+    background-size: 400px 400px;
+    opacity: 0.5;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; transform: scale(1); }
+    25% { opacity: 0.8; transform: scale(1.1); }
+    50% { opacity: 0.6; transform: scale(0.9); }
+    75% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.4; transform: scale(1); }
+}
+
+/* ===== COMETAS ===== */
+.comet-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.comet {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 
+        0 0 6px #fff,
+        0 0 12px #4fc3f7,
+        0 0 18px #4fc3f7;
+    animation: comet-fly linear infinite;
+}
+
+.comet::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.8) 30%, 
+        rgba(79,195,247,0.6) 70%, 
+        rgba(255,255,255,0) 100%);
+    transform: translateX(-100px);
+    border-radius: 50px;
+}
+
+.comet::after {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0) 0%, 
+        rgba(255,255,255,0.3) 20%, 
+        rgba(79,195,247,0.4) 50%, 
+        rgba(255,255,255,0.1) 80%, 
+        rgba(255,255,255,0) 100%);
+    transform: translateX(-150px);
+    border-radius: 50px;
+    filter: blur(1px);
+}
+
+@keyframes comet-fly {
+    0% {
+        transform: translateX(-100px) translateY(-100px) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Variações de cometas */
+.comet.comet-small {
+    width: 1px;
+    height: 1px;
+    animation-duration: 3s;
+}
+
+.comet.comet-medium {
+    width: 2px;
+    height: 2px;
+    animation-duration: 4s;
+}
+
+.comet.comet-large {
+    width: 3px;
+    height: 3px;
+    animation-duration: 5s;
+    box-shadow: 
+        0 0 8px #fff,
+        0 0 16px #4fc3f7,
+        0 0 24px #4fc3f7;
+}
+
+/* Estrelas especiais que piscam */
+.special-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 
+        0 0 10px #fff,
+        0 0 20px #4fc3f7,
+        0 0 30px #4fc3f7;
+    animation: special-twinkle 2s ease-in-out infinite;
+}
+
+@keyframes special-twinkle {
+    0%, 100% { 
+        opacity: 0.3; 
+        transform: scale(1);
+        box-shadow: 
+            0 0 10px #fff,
+            0 0 20px #4fc3f7,
+            0 0 30px #4fc3f7;
+    }
+    50% { 
+        opacity: 1; 
+        transform: scale(1.5);
+        box-shadow: 
+            0 0 15px #fff,
+            0 0 30px #4fc3f7,
+            0 0 45px #4fc3f7,
+            0 0 60px #4fc3f7;
+    }
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .stars-layer {
+        background-size: 150px 150px;
+    }
+    
+    .stars-layer-1 {
+        background-size: 180px 180px;
+    }
+    
+    .stars-layer-2 {
+        background-size: 200px 200px;
+    }
+    
+    .stars-layer-3 {
+        background-size: 250px 250px;
+    }
+    
+    .comet::before {
+        width: 60px;
+        transform: translateX(-60px);
+    }
+    
+    .comet::after {
+        width: 90px;
+        transform: translateX(-90px);
+    }
+}
+
+/* Otimizações de performance */
+@media (prefers-reduced-motion: reduce) {
+    .stars-layer,
+    .comet,
+    .special-star {
+        animation: none !important;
+    }
+    
+    .stars-background {
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    }
+}
+
+/* Otimização para dispositivos com baixa performance */
+@media (max-width: 480px) {
+    .stars-layer-2,
+    .stars-layer-3 {
+        display: none;
+    }
+    
+    .comet::after {
+        display: none;
+    }
+}

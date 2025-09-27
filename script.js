@@ -1777,3 +1777,137 @@ function initAccessibility() {
     }
 }
 
+// ===== SISTEMA DE ESTRELAS E COMETAS =====
+function initStarsBackground() {
+    createSpecialStars();
+    startCometGeneration();
+}
+
+function createSpecialStars() {
+    const starsContainer = document.querySelector('.stars-background');
+    if (!starsContainer) return;
+
+    // Criar estrelas especiais que piscam
+    for (let i = 0; i < 15; i++) {
+        const star = document.createElement('div');
+        star.className = 'special-star';
+        
+        // Posição aleatória
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        
+        star.style.left = `${x}%`;
+        star.style.top = `${y}%`;
+        
+        // Delay aleatório para a animação
+        star.style.animationDelay = `${Math.random() * 2}s`;
+        
+        starsContainer.appendChild(star);
+    }
+}
+
+function createComet() {
+    const cometContainer = document.querySelector('.comet-container');
+    if (!cometContainer) return;
+
+    const comet = document.createElement('div');
+    
+    // Tipos de cometa aleatórios
+    const types = ['comet-small', 'comet-medium', 'comet-large'];
+    const randomType = types[Math.floor(Math.random() * types.length)];
+    
+    comet.className = `comet ${randomType}`;
+    
+    // Posição inicial aleatória (sempre começando fora da tela)
+    const startX = Math.random() * -200 - 100; // Começa à esquerda da tela
+    const startY = Math.random() * window.innerHeight * 0.6; // Altura aleatória
+    
+    comet.style.left = `${startX}px`;
+    comet.style.top = `${startY}px`;
+    
+    // Duração aleatória da animação
+    const duration = 3 + Math.random() * 4; // Entre 3 e 7 segundos
+    comet.style.animationDuration = `${duration}s`;
+    
+    cometContainer.appendChild(comet);
+    
+    // Remove o cometa após a animação
+    setTimeout(() => {
+        if (comet.parentNode) {
+            comet.parentNode.removeChild(comet);
+        }
+    }, duration * 1000);
+}
+
+function startCometGeneration() {
+    // Gera cometas em intervalos aleatórios
+    function scheduleNextComet() {
+        const delay = 8000 + Math.random() * 15000; // Entre 8 e 23 segundos
+        setTimeout(() => {
+            createComet();
+            scheduleNextComet();
+        }, delay);
+    }
+    
+    // Primeiro cometa após 3 segundos
+    setTimeout(() => {
+        createComet();
+        scheduleNextComet();
+    }, 3000);
+}
+
+// Função para ajustar performance baseada no dispositivo
+function optimizeStarsPerformance() {
+    const isMobile = window.innerWidth <= 768;
+    const isLowEnd = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+    
+    if (isMobile || isLowEnd) {
+        // Reduz a quantidade de estrelas especiais em dispositivos menos potentes
+        const specialStars = document.querySelectorAll('.special-star');
+        specialStars.forEach((star, index) => {
+            if (index > 8) { // Mantém apenas 8 estrelas especiais
+                star.remove();
+            }
+        });
+        
+        // Reduz a frequência de cometas
+        const style = document.createElement('style');
+        style.textContent = `
+            .comet { animation-duration: 2s !important; }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// Função para pausar animações quando a aba não está ativa (economia de bateria)
+function handleVisibilityChange() {
+    const starsBackground = document.querySelector('.stars-background');
+    if (!starsBackground) return;
+    
+    if (document.hidden) {
+        starsBackground.style.animationPlayState = 'paused';
+        const comets = document.querySelectorAll('.comet');
+        comets.forEach(comet => {
+            comet.style.animationPlayState = 'paused';
+        });
+    } else {
+        starsBackground.style.animationPlayState = 'running';
+        const comets = document.querySelectorAll('.comet');
+        comets.forEach(comet => {
+            comet.style.animationPlayState = 'running';
+        });
+    }
+}
+
+// Event listeners para otimização
+document.addEventListener('visibilitychange', handleVisibilityChange);
+
+// Inicializar o sistema de estrelas quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    // Aguarda um pouco para garantir que o CSS foi carregado
+    setTimeout(() => {
+        initStarsBackground();
+        optimizeStarsPerformance();
+    }, 500);
+});
+
