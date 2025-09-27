@@ -763,12 +763,13 @@ section::before {
 .contact {
     background: transparent;
     position: relative;
+    padding: 40px 0;
 }
 
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 3rem;
     align-items: start;
 }
 
@@ -776,7 +777,7 @@ section::before {
     font-family: 'Orbitron', monospace;
     font-size: 2.5rem;
     font-weight: 300;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: #ffffff;
     letter-spacing: 2px;
 }
@@ -784,7 +785,7 @@ section::before {
 .contact-info p {
     font-size: 1.2rem;
     color: #a1a1aa;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     line-height: 1.7;
 }
 
@@ -792,7 +793,7 @@ section::before {
 .contact-methods {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 /* Efeito de partículas */
@@ -1058,6 +1059,8 @@ section::before {
     color: #a1a1aa;
     padding: 2rem 0 0.8rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
 }
 
 .footer-content {
@@ -1628,10 +1631,10 @@ img[loading="lazy"].loaded {
     background: linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #111111 50%, #1a1a1a 75%, #000000 100%);
     background-size: 400% 400%;
     animation: gradientShift 8s ease-in-out infinite;
-    padding: 120px 0 80px;
+    padding: 80px 0 40px;
     position: relative;
     overflow: hidden;
-    min-height: 60vh;
+    min-height: 40vh;
     display: flex;
     align-items: center;
 }
@@ -1835,7 +1838,7 @@ img[loading="lazy"].loaded {
 /* Cards de informações adicionais */
 .contact-additional {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(17, 17, 17, 0.6));
-    padding: 80px 0;
+    padding: 40px 0;
     position: relative;
 }
 
@@ -3357,7 +3360,7 @@ img[loading="lazy"].loaded {
 /* ==== SEÇÃO DO MAPA ==== */
 .map-section {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(17, 17, 17, 0.7));
-    padding: 100px 0;
+    padding: 50px 0;
     position: relative;
     overflow: hidden;
 }
@@ -3377,7 +3380,7 @@ img[loading="lazy"].loaded {
 
 .map-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     position: relative;
     z-index: 2;
 }
@@ -4676,11 +4679,23 @@ html {
 }
 
 @keyframes twinkle {
-    0% { opacity: 0.3; transform: scale(1); }
-    25% { opacity: 0.8; transform: scale(1.1); }
-    50% { opacity: 0.6; transform: scale(0.9); }
-    75% { opacity: 1; transform: scale(1.05); }
-    100% { opacity: 0.4; transform: scale(1); }
+    0% { opacity: 0.4; transform: scale(1); }
+    20% { opacity: 0.7; transform: scale(1.02); }
+    40% { opacity: 0.9; transform: scale(0.98); }
+    60% { opacity: 0.6; transform: scale(1.01); }
+    80% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.5; transform: scale(0.99); }
+}
+
+/* Cintilação individual para estrelas especiais */
+@keyframes sparkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes gentle-twinkle {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
 }
 
 /* ===== COMETAS ===== */
@@ -4695,49 +4710,55 @@ html {
 
 .comet {
     position: absolute;
-    width: 2px;
-    height: 2px;
+    width: 3px;
+    height: 3px;
     background: #fff;
     border-radius: 50%;
     box-shadow: 
-        0 0 6px #fff,
-        0 0 12px #4fc3f7,
-        0 0 18px #4fc3f7;
+        0 0 8px #fff,
+        0 0 16px #4fc3f7,
+        0 0 24px #4fc3f7,
+        0 0 32px rgba(79, 195, 247, 0.5);
     animation: comet-fly linear infinite;
+    z-index: 5;
 }
 
 .comet::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -1px;
     left: 0;
-    width: 100px;
-    height: 1px;
+    width: 120px;
+    height: 2px;
     background: linear-gradient(90deg, 
         rgba(255,255,255,0) 0%, 
-        rgba(255,255,255,0.8) 30%, 
-        rgba(79,195,247,0.6) 70%, 
+        rgba(255,255,255,0.9) 20%, 
+        rgba(79,195,247,0.8) 60%, 
+        rgba(255,255,255,0.4) 90%, 
         rgba(255,255,255,0) 100%);
-    transform: translateX(-100px);
+    transform: translateX(-120px);
     border-radius: 50px;
+    z-index: 4;
 }
 
 .comet::after {
     content: '';
     position: absolute;
-    top: -1px;
+    top: -2px;
     left: 0;
-    width: 150px;
-    height: 3px;
+    width: 180px;
+    height: 4px;
     background: linear-gradient(90deg, 
         rgba(255,255,255,0) 0%, 
-        rgba(255,255,255,0.3) 20%, 
-        rgba(79,195,247,0.4) 50%, 
-        rgba(255,255,255,0.1) 80%, 
+        rgba(255,255,255,0.4) 15%, 
+        rgba(79,195,247,0.6) 40%, 
+        rgba(79,195,247,0.3) 70%, 
+        rgba(255,255,255,0.1) 90%, 
         rgba(255,255,255,0) 100%);
-    transform: translateX(-150px);
+    transform: translateX(-180px);
     border-radius: 50px;
-    filter: blur(1px);
+    filter: blur(0.5px);
+    z-index: 3;
 }
 
 @keyframes comet-fly {

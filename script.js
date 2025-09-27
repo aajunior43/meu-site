@@ -1780,7 +1780,42 @@ function initAccessibility() {
 // ===== SISTEMA DE ESTRELAS E COMETAS =====
 function initStarsBackground() {
     createSpecialStars();
+    createTwinklingStars();
     startCometGeneration();
+}
+
+function createTwinklingStars() {
+    const starsContainer = document.querySelector('.stars-background');
+    if (!starsContainer) return;
+
+    // Criar algumas estrelas especiais que cintilam individualmente
+    for (let i = 0; i < 15; i++) {
+        const star = document.createElement('div');
+        star.className = 'twinkling-star';
+        
+        // Posição aleatória
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        
+        star.style.position = 'absolute';
+        star.style.left = `${x}%`;
+        star.style.top = `${y}%`;
+        star.style.width = `${2 + Math.random() * 3}px`;
+        star.style.height = star.style.width;
+        star.style.background = '#fff';
+        star.style.borderRadius = '50%';
+        star.style.boxShadow = '0 0 6px #fff, 0 0 12px #4fc3f7';
+        
+        // Animação de cintilação aleatória
+        const animationType = Math.random() > 0.5 ? 'sparkle' : 'gentle-twinkle';
+        const duration = 2 + Math.random() * 4; // Entre 2 e 6 segundos
+        const delay = Math.random() * 3; // Delay aleatório
+        
+        star.style.animation = `${animationType} ${duration}s ease-in-out infinite`;
+        star.style.animationDelay = `${delay}s`;
+        
+        starsContainer.appendChild(star);
+    }
 }
 
 function createSpecialStars() {
@@ -1842,18 +1877,18 @@ function createComet() {
 function startCometGeneration() {
     // Gera cometas em intervalos aleatórios
     function scheduleNextComet() {
-        const delay = 8000 + Math.random() * 15000; // Entre 8 e 23 segundos
+        const delay = 4000 + Math.random() * 8000; // Entre 4 e 12 segundos
         setTimeout(() => {
             createComet();
             scheduleNextComet();
         }, delay);
     }
     
-    // Primeiro cometa após 3 segundos
+    // Primeiro cometa após 2 segundos
     setTimeout(() => {
         createComet();
         scheduleNextComet();
-    }, 3000);
+    }, 2000);
 }
 
 // Função para ajustar performance baseada no dispositivo
