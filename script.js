@@ -1805,6 +1805,7 @@ function createTwinklingStars() {
         star.style.background = '#fff';
         star.style.borderRadius = '50%';
         star.style.boxShadow = '0 0 6px #fff, 0 0 12px #4fc3f7';
+        star.style.zIndex = '-8';
         
         // Animação de cintilação aleatória
         const animationType = Math.random() > 0.5 ? 'sparkle' : 'gentle-twinkle';
