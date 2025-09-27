@@ -764,6 +764,7 @@ section::before {
     background: transparent;
     position: relative;
     padding: 40px 0;
+    z-index: 1;
 }
 
 .contact-content {
@@ -1637,6 +1638,7 @@ img[loading="lazy"].loaded {
     min-height: 40vh;
     display: flex;
     align-items: center;
+    z-index: 1;
 }
 
 .contact-header::before {
@@ -1840,6 +1842,7 @@ img[loading="lazy"].loaded {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(17, 17, 17, 0.6));
     padding: 40px 0;
     position: relative;
+    z-index: 1;
 }
 
 .contact-additional::before {
