@@ -206,40 +206,14 @@ body.theme-transition *:after {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #111111 50%, #1a1a1a 75%, #000000 100%);
-    background-size: 400% 400%;
-    animation: gradientShift 8s ease-in-out infinite;
+    background: transparent;
     color: white;
     position: relative;
     overflow: hidden;
+    z-index: 10;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(120, 255, 198, 0.15) 0%, transparent 50%);
-    animation: gradientFloat 12s ease-in-out infinite;
-}
-
-.hero::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
-    background-size: 50px 50px;
-    opacity: 0.3;
-    animation: starfield 20s linear infinite;
-}
+/* Pseudo-elementos removidos para permitir que o fundo de estrelas apareça */
 
 .hero-container {
     display: grid;
@@ -3955,10 +3929,7 @@ img[loading="lazy"].loaded {
         display: none;
     }
 
-    .hero::before,
-    .hero::after {
-        opacity: 0.2;
-    }
+    /* Pseudo-elementos removidos para permitir que as estrelas apareçam */
 
     .skill-item:hover,
     .timeline-item:hover,
@@ -4113,17 +4084,12 @@ body.light-theme .nav-link.active {
     border-color: rgba(14, 165, 233, 0.2);
 }
 
-/* Hero no tema claro */
+/* Hero no tema claro - background removido para mostrar estrelas */
 body.light-theme .hero {
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 25%, #f1f5f9 50%, #e2e8f0 75%, #ffffff 100%);
+    background: transparent;
 }
 
-body.light-theme .hero::before {
-    background:
-        radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
-}
+/* Pseudo-elemento removido para permitir que as estrelas apareçam */
 
 body.light-theme .hero-title {
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 25%, var(--accent-pink) 50%, var(--accent-purple) 75%, var(--text-primary) 100%);
@@ -4400,7 +4366,7 @@ body.light-theme .footer-info h3 {
 }
 
 /* Otimização de performance para animações */
-.hero, .hero::before, .hero::after {
+.hero {
     will-change: transform;
 }
 
@@ -4670,9 +4636,10 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: 1;
     overflow: hidden;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    pointer-events: none;
 }
 
 .stars-layer {
