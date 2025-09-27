@@ -513,7 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== INICIALIZAÇÃO DE EFEITOS INTERATIVOS =====
     createParticles();
-    createMouseFollower();
+    createFuturisticCursor();
     addRippleEffect();
 
     // Inicia efeito typing com delay
@@ -569,40 +569,133 @@ function scrollToNext() {
     });
 }
 
-// ===== EFEITO MOUSE SEGUIDOR =====
-function createMouseFollower() {
+// ===== EFEITO CURSOR FUTURISTA =====
+function createFuturisticCursor() {
+    // Criar cursor principal
     const cursor = document.createElement('div');
-    cursor.className = 'cursor-follower';
+    cursor.className = 'futuristic-cursor';
     cursor.style.cssText = `
         position: fixed;
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
+        border: 2px solid rgba(0, 255, 255, 0.8);
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(0,212,255,0.4) 100%);
         pointer-events: none;
         z-index: 9999;
-        transition: transform 0.1s ease;
+        transition: all 0.15s ease;
         mix-blend-mode: difference;
+        background: transparent;
+        box-shadow: 
+            0 0 10px rgba(0, 255, 255, 0.5),
+            inset 0 0 10px rgba(0, 255, 255, 0.2);
     `;
+    
+    // Criar cursor interno (ponto central)
+    const cursorDot = document.createElement('div');
+    cursorDot.className = 'cursor-dot';
+    cursorDot.style.cssText = `
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        background: rgba(0, 255, 255, 1);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transition: all 0.1s ease;
+        box-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+    `;
+
+    // Criar linhas de mira
+    const crosshair = document.createElement('div');
+    crosshair.className = 'cursor-crosshair';
+    crosshair.style.cssText = `
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.2s ease;
+        opacity: 0;
+    `;
+    
+    crosshair.innerHTML = `
+        <div style="
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(0,255,255,0.6) 45%, transparent 50%, rgba(0,255,255,0.6) 55%, transparent 100%);
+            transform: translateY(-50%);
+        "></div>
+        <div style="
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,255,255,0.6) 45%, transparent 50%, rgba(0,255,255,0.6) 55%, transparent 100%);
+            transform: translateX(-50%);
+        "></div>
+    `;
+
     document.body.appendChild(cursor);
+    document.body.appendChild(cursorDot);
+    document.body.appendChild(crosshair);
 
     document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX - 10 + 'px';
-        cursor.style.top = e.clientY - 10 + 'px';
+        const x = e.clientX;
+        const y = e.clientY;
+        
+        cursor.style.left = (x - 12) + 'px';
+        cursor.style.top = (y - 12) + 'px';
+        
+        cursorDot.style.left = (x - 2) + 'px';
+        cursorDot.style.top = (y - 2) + 'px';
+        
+        crosshair.style.left = (x - 20) + 'px';
+        crosshair.style.top = (y - 20) + 'px';
     });
 
     // Efeito hover em elementos interativos
-    const interactiveElements = document.querySelectorAll('a, button, .btn, .social-link');
+    const interactiveElements = document.querySelectorAll('a, button, .btn, .social-link, input, textarea, select');
     interactiveElements.forEach(element => {
         element.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'scale(2)';
-            cursor.style.background = 'radial-gradient(circle, rgba(255,107,157,0.8) 0%, rgba(196,113,237,0.4) 100%)';
+            cursor.style.transform = 'scale(1.5)';
+            cursor.style.borderColor = 'rgba(255, 107, 157, 0.9)';
+            cursor.style.boxShadow = `
+                0 0 15px rgba(255, 107, 157, 0.7),
+                inset 0 0 15px rgba(255, 107, 157, 0.3)
+            `;
+            cursorDot.style.background = 'rgba(255, 107, 157, 1)';
+            cursorDot.style.boxShadow = '0 0 12px rgba(255, 107, 157, 0.9)';
+            crosshair.style.opacity = '1';
+            crosshair.style.transform = 'scale(1.2)';
         });
 
         element.addEventListener('mouseleave', () => {
             cursor.style.transform = 'scale(1)';
-            cursor.style.background = 'radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(0,212,255,0.4) 100%)';
+            cursor.style.borderColor = 'rgba(0, 255, 255, 0.8)';
+            cursor.style.boxShadow = `
+                0 0 10px rgba(0, 255, 255, 0.5),
+                inset 0 0 10px rgba(0, 255, 255, 0.2)
+            `;
+            cursorDot.style.background = 'rgba(0, 255, 255, 1)';
+            cursorDot.style.boxShadow = '0 0 8px rgba(0, 255, 255, 0.8)';
+            crosshair.style.opacity = '0';
+            crosshair.style.transform = 'scale(1)';
         });
+    });
+
+    // Efeito de clique
+    document.addEventListener('mousedown', () => {
+        cursor.style.transform = cursor.style.transform.includes('scale(1.5)') ? 'scale(1.2)' : 'scale(0.8)';
+        cursorDot.style.transform = 'scale(1.5)';
+    });
+
+    document.addEventListener('mouseup', () => {
+        cursor.style.transform = cursor.style.transform.includes('scale(1.2)') ? 'scale(1.5)' : 'scale(1)';
+        cursorDot.style.transform = 'scale(1)';
     });
 }
 
