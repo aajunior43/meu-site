@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio profissional de Aleksandro Alves da Rocha Junior - Desenvolvedor e Especialista em Data Science, Machine Learning e Tecnologia">
+    <meta name="keywords" content="desenvolvedor, data science, machine learning, python, tecnologia, portfólio">
+    <meta name="author" content="Aleksandro Alves da Rocha Junior">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Aleksandro Alves da Rocha Junior - Portfólio Profissional">
+    <meta property="og:description" content="Desenvolvedor e Especialista em Data Science, Machine Learning e Tecnologia">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seu-dominio.vercel.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aleksandro Alves da Rocha Junior - Portfólio">
+    <meta name="twitter:description" content="Desenvolvedor e Especialista em Data Science, Machine Learning e Tecnologia">
+
+    <title>Aleksandro Alves da Rocha Junior - Portfólio Profissional</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="accessibility.css">
+
+    <!-- External resources -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+</head>
+<body>
+    <!-- Header e Navegação -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h2>Aleksandro Alves</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="portfolio.html" class="nav-link">Portfólio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="certificates.html" class="nav-link">Certificados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="search-container">
+                            <input type="text" class="search-input" id="searchInput" placeholder="Buscar...">
+                            <button class="search-btn" id="searchBtn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <div class="search-results" id="searchResults"></div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="theme-toggle" id="themeToggle" title="Alternar tema">
+                            <div class="toggle-track">
+                                <div class="toggle-thumb">
+                                    <i class="toggle-icon fas fa-sun"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sistema de Partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Seção Hero Principal -->
+    <main id="home" class="hero" role="banner">
+        <div class="hero-container">
+            <article class="hero-content" itemscope itemtype="https://schema.org/Person">
+                <header class="hero-header">
+                    <h1 class="hero-title">
+                        <span class="hero-greeting">Olá, eu sou</span>
+                        <span class="hero-name" itemprop="name">Aleksandro Alves</span>
+                    </h1>
+                </header>
+
+                <nav class="hero-buttons" role="navigation" aria-label="Navegação principal">
+                    <a href="contact.html" class="btn btn-secondary" role="button" aria-describedby="contact-desc">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        Entre em Contato
+                    </a>
+                    <a href="portfolio.html" class="btn btn-primary" role="button">
+                        <i class="fas fa-code" aria-hidden="true"></i>
+                        Ver Projetos
+                    </a>
+                </nav>
+                
+                <aside class="hero-social" role="complementary" aria-label="Links de redes sociais">
+                    <a href="#" class="social-link" aria-label="Repositórios no GitHub" rel="noopener">
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Perfil no Instagram" rel="noopener">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://wa.me/5544991842415" class="social-link" aria-label="Contato via WhatsApp" rel="noopener">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                    </a>
+                </aside>
+            </article>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <aside class="scroll-indicator" role="complementary" aria-label="Indicador de rolagem" onclick="scrollToNext()">
+            <div class="scroll-arrow" aria-hidden="true">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <span class="scroll-text">Explore mais</span>
+        </aside>
+    </main>
+
+    <!-- Seção de Depoimentos -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">O Que Dizem os Clientes</h2>
+                <p class="section-subtitle">Depoimentos reais de clientes satisfeitos</p>
+            </div>
+
+            <div class="testimonials-slider">
+                <div class="testimonial-card active">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Aleksandro desenvolveu nosso e-commerce do zero. O resultado superou todas as expectativas!
+                            Profissional dedicado e com visão técnica excepcional."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Maria Silva</h4>
+                                <span>CEO, TechStart</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Excelente trabalho na criação do nosso app mobile. Entrega no prazo, qualidade impecável
+                            e suporte contínuo. Recomendo muito!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>João Santos</h4>
+                                <span>Founder, AppTech</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <div class="testimonial-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">
+                            "Sistema de gestão implementado com perfeição. Automatizou nossos processos e aumentou
+                            nossa produtividade em 300%. Simplesmente fantástico!"
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="author-info">
+                                <h4>Ana Costa</h4>
+                                <span>Diretora, InnovaCorp</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonials-navigation">
+                <button class="testimonial-nav prev" onclick="changeTestimonial(-1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="testimonial-dots">
+                    <span class="dot active" onclick="currentTestimonial(1)"></span>
+                    <span class="dot" onclick="currentTestimonial(2)"></span>
+                    <span class="dot" onclick="currentTestimonial(3)"></span>
+                </div>
+                <button class="testimonial-nav next" onclick="changeTestimonial(1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Serviços -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Meus Serviços</h2>
+                <p class="section-subtitle">Soluções tecnológicas personalizadas para seu negócio</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card" data-service="web">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Desenvolvimento Web</h3>
+                        <p>Sites modernos, responsivos e otimizados para conversão. Desde landing pages até sistemas complexos.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Design Responsivo</li>
+                            <li><i class="fas fa-check"></i> SEO Otimizado</li>
+                            <li><i class="fas fa-check"></i> Performance Máxima</li>
+                        </ul>
+                        <div class="service-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">PHP</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="price-from">A partir de</span>
+                        <span class="price-value">R$ 1.500</span>
+                    </div>
+                    <div class="service-cta">
+                        <a href="contact.html" class="btn-service">Solicitar Orçamento</a>
+                    </div>
+                </div>
+
+                <div class="service-card featured" data-service="mobile">
+                    <div class="featured-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Mais Procurado</span>
+                    </div>
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Aplicativos Mobile</h3>
+                        <p>Apps nativos e híbridos para iOS e Android. Experiência de usuário excepcional e performance nativa.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Design Intuitivo</li>
+                            <li><i class="fas fa-check"></i> Multiplataforma</li>
+                            <li><i class="fas fa-check"></i> Integração API</li>
+                        </ul>
+                        <div class="service-tech">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Swift</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="price-from">A partir de</span>
+                        <span class="price-value">R$ 3.500</span>
+                    </div>
+                    <div class="service-cta">
+                        <a href="contact.html" class="btn-service">Solicitar Orçamento</a>
+                    </div>
+                </div>
+
+                <div class="service-card" data-service="system">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Sistemas Personalizados</h3>
+                        <p>ERPs, CRMs e sistemas sob medida para automatizar processos e aumentar produtividade.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Automação Completa</li>
+                            <li><i class="fas fa-check"></i> Integração de Dados</li>
+                            <li><i class="fas fa-check"></i> Relatórios Avançados</li>
+                        </ul>
+                        <div class="service-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Django</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="price-from">A partir de</span>
+                        <span class="price-value">R$ 5.000</span>
+                    </div>
+                    <div class="service-cta">
+                        <a href="contact.html" class="btn-service">Solicitar Orçamento</a>
+                    </div>
+                </div>
+
+                <div class="service-card" data-service="consulting">
+                    <div class="service-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Consultoria Técnica</h3>
+                        <p>Análise de projetos existentes, otimização de performance e consultoria em arquitetura de software.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Auditoria Técnica</li>
+                            <li><i class="fas fa-check"></i> Otimização de Performance</li>
+                            <li><i class="fas fa-check"></i> Mentoria de Equipes</li>
+                        </ul>
+                        <div class="service-tech">
+                            <span class="tech-tag">DevOps</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="price-from">A partir de</span>
+                        <span class="price-value">R$ 200/h</span>
+                    </div>
+                    <div class="service-cta">
+                        <a href="contact.html" class="btn-service">Solicitar Orçamento</a>
+                    </div>
+                </div>
+
+                <div class="service-card" data-service="ecommerce">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>E-commerce</h3>
+                        <p>Lojas virtuais completas com gestão de produtos, pagamentos e integração com marketplaces.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Gateway de Pagamento</li>
+                            <li><i class="fas fa-check"></i> Gestão de Estoque</li>
+                            <li><i class="fas fa-check"></i> Marketing Digital</li>
+                        </ul>
+                        <div class="service-tech">
+                            <span class="tech-tag">WooCommerce</span>
+                            <span class="tech-tag">Shopify</span>
+                            <span class="tech-tag">Magento</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="price-from">A partir de</span>
+                        <span class="price-value">R$ 2.500</span>
+                    </div>
+                    <div class="service-cta">
+                        <a href="contact.html" class="btn-service">Solicitar Orçamento</a>
+                    </div>
+                </div>
+
+                <div class="service-card" data-service="maintenance">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Manutenção & Suporte</h3>
+                        <p>Suporte técnico contínuo, atualizações de segurança e manutenção preventiva de sistemas.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Monitoramento 24/7</li>
+                            <li><i class="fas fa-check"></i> Backup Automático</li>
+                            <li><i class="fas fa-check"></i> Suporte Prioritário</li>
+                        </ul>
+                        <div class="service-tech">
+                            <span class="tech-tag">Monitoring</span>
+                            <span class="tech-tag">SSL</span>
+                            <span class="tech-tag">Security</span>
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        <span class="price-from">A partir de</span>
+                        <span class="price-value">R$ 300/mês</span>
+                    </div>
+                    <div class="service-cta">
+                        <a href="contact.html" class="btn-service">Solicitar Orçamento</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="services-cta">
+                <div class="cta-content">
+                    <h3>Não encontrou o que procura?</h3>
+                    <p>Entre em contato e vamos conversar sobre seu projeto específico</p>
+                    <a href="contact.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-comments"></i>
+                        Falar com Especialista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Perguntas Frequentes</h2>
+                <p class="section-subtitle">Tire suas dúvidas sobre nossos serviços</p>
+            </div>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Qual o prazo para desenvolvimento de um site?</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O prazo varia conforme a complexidade do projeto. Sites simples levam de 1-2 semanas, enquanto projetos mais complexos podem levar de 4-8 semanas. Fornecemos cronograma detalhado na proposta.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Vocês oferecem suporte pós-entrega?</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim! Oferecemos 30 dias de suporte gratuito para correções e ajustes. Também temos planos de manutenção mensal para atualizações contínuas e suporte técnico.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>O site será responsivo para mobile?</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutamente! Todos os nossos projetos são desenvolvidos com design responsivo, garantindo perfeita visualização em smartphones, tablets e desktops.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Posso fazer alterações durante o desenvolvimento?</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim, trabalhamos de forma colaborativa. Pequenos ajustes são inclusos no projeto. Mudanças significativas podem impactar prazo e valor, sempre com transparência total.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Quais formas de pagamento são aceitas?</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Aceitamos PIX, transferência bancária e cartão de crédito. Parcelamento disponível conforme valor do projeto. Entrada de 50% para início dos trabalhos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>O código fonte fica comigo?</h3>
+                        <i class="fas fa-plus faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim! Após o pagamento final, você recebe todo o código fonte, documentação e orientações para hospedagem. Você terá total propriedade do projeto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo" itemscope itemtype="https://schema.org/Person">
+        <div class="container">
+            <div class="footer-content">
+                <section class="footer-section" aria-labelledby="footer-about">
+                    <h3 id="footer-about" itemprop="name">Aleksandro Alves</h3>
+                    <p itemprop="description">Especialista em tecnologia apaixonado por criar soluções inovadoras.</p>
+                </section>
+                <nav class="footer-section" aria-labelledby="footer-nav">
+                    <h4 id="footer-nav">Links Rápidos</h4>
+                    <ul class="footer-links" role="list">
+                        <li role="listitem"><a href="index.html" aria-label="Ir para página inicial">Início</a></li>
+                        <li role="listitem"><a href="about.html" aria-label="Ir para página sobre">Sobre</a></li>
+                        <li role="listitem"><a href="portfolio.html" aria-label="Ir para portfólio">Portfólio</a></li>
+                        <li role="listitem"><a href="certificates.html" aria-label="Ir para certificados">Certificados</a></li>
+                        <li role="listitem"><a href="contact.html" aria-label="Ir para página de contato">Contato</a></li>
+                    </ul>
+                </nav>
+                <address class="footer-section" aria-labelledby="footer-contact">
+                    <h4 id="footer-contact">Contato</h4>
+                    <p>
+                        <i class="fas fa-envelope" aria-hidden="true"></i> 
+                        <a href="mailto:aajunior43@gmail.com" itemprop="email" aria-label="Enviar email">aajunior43@gmail.com</a>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone" aria-hidden="true"></i> 
+                        <a href="tel:+5544991842415" itemprop="telephone" aria-label="Ligar para telefone">+55 44 99184-2415</a>
+                    </p>
+                </address>
+            </div>
+            <div class="footer-bottom" role="contentinfo">
+                <p>&copy; 2025 <span itemprop="name">Aleksandro Alves</span>. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-container">
+            <div class="loader-circle"></div>
+            <div class="loader-text">Carregando...</div>
+            <div class="loader-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

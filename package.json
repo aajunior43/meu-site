@@ -1,0 +1,27 @@
+{
+  "name": "aleksandro-portfolio",
+  "version": "1.0.0",
+  "description": "Portfólio profissional de Aleksandro Alves da Rocha Junior",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build process needed for static site'",
+    "deploy": "vercel --prod",
+    "preview": "vercel"
+  },
+  "keywords": [
+    "portfolio",
+    "data-science",
+    "machine-learning",
+    "developer",
+    "technology"
+  ],
+  "author": "Aleksandro Alves da Rocha Junior",
+  "license": "MIT",
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  },
+  "engines": {
+    "node": ">=14.x"
+  }
+}
