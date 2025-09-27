@@ -527,9 +527,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== INICIALIZAÇÃO DO SISTEMA DE TEMA =====
     initThemeToggle();
 
-    // ===== INICIALIZAÇÃO DO FAQ =====
-    initFAQ();
-
     // ===== INICIALIZAÇÃO DO LOADER =====
     initPageLoader();
 
@@ -1639,23 +1636,7 @@ function createCursorTrail(x, y) {
     }
 }
 
-// ===== SISTEMA DE FAQ =====
-function initFAQ() {
-    window.toggleFaq = function(element) {
-        const faqItem = element.closest('.faq-item');
-        const isActive = faqItem.classList.contains('active');
 
-        // Fecha todos os FAQs
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
-        });
-
-        // Abre o clicado se não estava ativo
-        if (!isActive) {
-            faqItem.classList.add('active');
-        }
-    };
-}
 
 // ===== SISTEMA DE LOADER =====
 function initPageLoader() {

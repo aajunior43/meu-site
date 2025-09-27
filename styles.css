@@ -2238,78 +2238,7 @@ img[loading="lazy"].loaded {
 
 
 
-/* ===== ESTILOS PARA FAQ ===== */
-.faq {
-    padding: 100px 0;
-    background: var(--bg-white);
-}
 
-.faq-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.faq-item {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    margin-bottom: 20px;
-    border: 1px solid var(--border-color);
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-
-.faq-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-.faq-question {
-    padding: 25px 30px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.02);
-    transition: all 0.3s ease;
-}
-
-.faq-question:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.faq-question h3 {
-    color: var(--text-dark);
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin: 0;
-}
-
-.faq-icon {
-    color: var(--accent-color);
-    font-size: 1.2rem;
-    transition: transform 0.3s ease;
-}
-
-.faq-item.active .faq-icon {
-    transform: rotate(45deg);
-}
-
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-}
-
-.faq-item.active .faq-answer {
-    max-height: 200px;
-}
-
-.faq-answer p {
-    padding: 0 30px 25px;
-    color: var(--text-light);
-    line-height: 1.7;
-    margin: 0;
-}
 
 
 
