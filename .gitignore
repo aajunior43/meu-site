@@ -103,4 +103,6 @@ temp/
 
 # Package lock files (keep only one)
 # package-lock.json
-# yarn.lock
+# yarn.lock# AI helper artifacts
+.claude/
+tmp_head.txt
