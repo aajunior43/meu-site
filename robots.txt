@@ -1,78 +1,9 @@
-# robots.txt para Aleksandro Alves Portfolio
-
 User-agent: *
 Allow: /
 
-# Permitir todas as páginas principais
-Allow: /index.html
-Allow: /about.html
-Allow: /portfolio.html
-Allow: /certificates.html
-Allow: /contact.html
-Allow: /blog.html
-Allow: /linktree.html
-
-# Permitir recursos estáticos
-Allow: /styles.css
-Allow: /accessibility.css
-Allow: /script.js
-Allow: /manifest.json
-Allow: /sw.js
-
-# Permitir imagens e mídia
-Allow: /images/
-Allow: /assets/
-Allow: *.jpg
-Allow: *.jpeg
-Allow: *.png
-Allow: *.gif
-Allow: *.svg
-Allow: *.webp
-Allow: *.pdf
-
-# Bloquear arquivos sensíveis (se existirem)
-Disallow: /admin/
-Disallow: /private/
+# Bloquear diretórios sensíveis (se existirem)
 Disallow: /.git/
 Disallow: /node_modules/
-Disallow: /.env
-Disallow: /config/
-Disallow: /logs/
-Disallow: /temp/
-Disallow: /cache/
 
 # Sitemap
 Sitemap: https://aleksandro-alves-portfolio.vercel.app/sitemap.xml
-
-# Crawl-delay para bots mais pesados
-User-agent: bingbot
-Crawl-delay: 1
-
-User-agent: slurp
-Crawl-delay: 1
-
-# Permitir bots de redes sociais
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: twitterbot
-Allow: /
-
-User-agent: linkedinbot
-Allow: /
-
-User-agent: whatsapp
-Allow: /
-
-# Permitir bots de busca específicos
-User-agent: googlebot
-Allow: /
-
-User-agent: bingbot
-Allow: /
-
-User-agent: yandexbot
-Allow: /
-
-User-agent: duckduckbot
-Allow: /

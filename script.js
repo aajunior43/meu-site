@@ -1,6 +1,19 @@
 // Aguarda o carregamento completo do DOM
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Assegura segurança em links externos
+    try {
+        document.querySelectorAll('a[target="_blank"]').forEach(function(a){
+            const rel = (a.getAttribute('rel') || '').toLowerCase();
+            if (!rel.includes('noopener')) {
+                a.setAttribute('rel', (rel ? rel + ' ' : '') + 'noopener');
+            }
+            if (!rel.includes('noreferrer')) {
+                a.setAttribute('rel', (a.getAttribute('rel') + ' noreferrer').trim());
+            }
+        });
+    } catch (e) { /* no-op */ }
+
     // ===== DETECÇÃO DE DISPOSITIVO MOBILE =====
     const isMobile = window.innerWidth <= 768;
     const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
