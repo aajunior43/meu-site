@@ -148,30 +148,60 @@
         <div class="hero-container">
             <section class="hero-content" itemscope itemtype="https://schema.org/Person">
                 <header class="hero-header">
+                    <span class="hero-badge">Disponivel para novas colaboracoes</span>
                     <h1 class="hero-title">
-                        <span class="hero-greeting">Olá, eu sou</span>
+                        <span class="hero-greeting">Ola, eu sou</span>
                         <span class="hero-name" itemprop="name">Aleksandro Alves</span>
                     </h1>
-                    <p class="hero-subtitle" itemprop="jobTitle">Criativo & Inovador</p>
+                    <p class="hero-subtitle" itemprop="jobTitle">Criativo &amp; Inovador</p>
                     <p class="hero-description" itemprop="description">
-                        Apaixonado por inovação, transformo ideias em realidade através da
-                        criatividade e do compartilhamento de conhecimento inspirador.
+                        Apaixonado por transformar ideias em experiencias visuais e conteudos que conectam pessoas a marcas.
                     </p>
                 </header>
 
-                <div class="hero-buttons" role="group" aria-label="Ações principais">
-                    <a href="contact.html" class="btn btn-primary" role="button" aria-describedby="contact-desc">
+                <div class="hero-buttons" role="group" aria-label="Acoes principais">
+                    <a href="contact.html" class="btn btn-primary">
                         <i class="fas fa-envelope" aria-hidden="true"></i>
-                        <span>Entre em Contato</span>
+                        <span>Vamos colaborar</span>
                     </a>
-                    <a href="portfolio.html" class="btn btn-secondary" role="button" aria-describedby="portfolio-desc">
+                    <a href="portfolio.html" class="btn btn-secondary">
                         <i class="fas fa-briefcase" aria-hidden="true"></i>
-                        <span>Ver Portfólio</span>
+                        <span>Ver portfolio</span>
                     </a>
                 </div>
 
-                <aside class="hero-social" role="complementary" aria-label="Links de redes sociais">
-                    <a href="https://github.com/aleksandro-rocha" class="social-link" aria-label="Repositórios no GitHub" rel="noopener" target="_blank">
+                <ul class="hero-highlights" role="list">
+                    <li class="hero-highlight">
+                        <span class="hero-highlight-icon" aria-hidden="true">
+                            <i class="fas fa-lightbulb"></i>
+                        </span>
+                        <div>
+                            <strong>Workshops &amp; talks</strong>
+                            <span>Compartilho praticas sobre inovacao e storytelling em comunidades.</span>
+                        </div>
+                    </li>
+                    <li class="hero-highlight">
+                        <span class="hero-highlight-icon" aria-hidden="true">
+                            <i class="fas fa-palette"></i>
+                        </span>
+                        <div>
+                            <strong>Design imersivo</strong>
+                            <span>Desenvolvo identidades e experiencias digitais com foco humano.</span>
+                        </div>
+                    </li>
+                    <li class="hero-highlight">
+                        <span class="hero-highlight-icon" aria-hidden="true">
+                            <i class="fas fa-users"></i>
+                        </span>
+                        <div>
+                            <strong>Comunidades criativas</strong>
+                            <span>Conecto pessoas por meio de conteudo, mentorias e projetos colaborativos.</span>
+                        </div>
+                    </li>
+                </ul>
+
+                <nav class="hero-social" aria-label="Redes sociais">
+                    <a href="https://github.com/aleksandro-rocha" class="social-link" aria-label="Repositorios no GitHub" rel="noopener" target="_blank">
                         <i class="fab fa-github" aria-hidden="true"></i>
                         <span class="sr-only">GitHub</span>
                     </a>
@@ -187,10 +217,32 @@
                         <i class="fab fa-whatsapp" aria-hidden="true"></i>
                         <span class="sr-only">WhatsApp</span>
                     </a>
-                </aside>
+                </nav>
             </section>
-        </div>
 
+            <aside class="hero-showcase" aria-hidden="true">
+                <div class="hero-showcase-card">
+                    <div class="hero-showcase-header">
+                        <span class="hero-showcase-badge">Projeto destaque</span>
+                        <span class="hero-showcase-score">2025</span>
+                    </div>
+                    <div class="hero-showcase-list">
+                        <div class="hero-showcase-item">
+                            <i class="fas fa-bolt" aria-hidden="true"></i>
+                            <span>Experiencias digitais com narrativas interativas e acessiveis.</span>
+                        </div>
+                        <div class="hero-showcase-item">
+                            <i class="fas fa-video" aria-hidden="true"></i>
+                            <span>Conteudo audiovisual para eventos e programas de formacao.</span>
+                        </div>
+                        <div class="hero-showcase-item">
+                            <i class="fas fa-heart" aria-hidden="true"></i>
+                            <span>Projetos que colocam pessoas no centro das solucoes.</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
         <!-- Scroll Indicator -->
         <button class="scroll-indicator" aria-label="Rolar para baixo para ver mais conteúdo" onclick="scrollToNext()">
             <div class="scroll-arrow" aria-hidden="true">
@@ -318,6 +370,11 @@
         </div>
     </div>
 
+
+    <a href="contact.html" class="floating-cta" aria-label="Ir para a pagina de contato">
+        <i class="fas fa-comments" aria-hidden="true"></i>
+        <span>Vamos conversar</span>
+    </a>
     <script src="script.js" defer></script>
 
     <!-- Performance monitoring -->
