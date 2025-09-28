@@ -526,8 +526,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== VALIDAÇÃO AVANÇADA PARA PÁGINA DE CONTATO =====
     initContactFormValidation();
 
-    // ===== INICIALIZAÇÃO DO SISTEMA DE TEMA =====
-    initThemeToggle();
+
 
     // ===== INICIALIZAÇÃO DO LOADER =====
     initPageLoader();
@@ -590,6 +589,7 @@ function createFuturisticCursor() {
         box-shadow: 
             0 0 10px rgba(0, 255, 255, 0.5),
             inset 0 0 10px rgba(0, 255, 255, 0.2);
+        transform: translate(-50%, -50%) scale(1);
     `;
     
     // Criar cursor interno (ponto central)
@@ -605,6 +605,7 @@ function createFuturisticCursor() {
         z-index: 10000;
         transition: all 0.1s ease;
         box-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+        transform: translate(-50%, -50%) scale(1);
     `;
 
     // Criar linhas de mira
@@ -618,6 +619,7 @@ function createFuturisticCursor() {
         z-index: 9998;
         transition: all 0.2s ease;
         opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
     `;
     
     crosshair.innerHTML = `
@@ -649,14 +651,14 @@ function createFuturisticCursor() {
         const x = e.clientX;
         const y = e.clientY;
         
-        cursor.style.left = (x - 12) + 'px';
-        cursor.style.top = (y - 12) + 'px';
+        cursor.style.left = x + 'px';
+        cursor.style.top = y + 'px';
         
-        cursorDot.style.left = (x - 2) + 'px';
-        cursorDot.style.top = (y - 2) + 'px';
+        cursorDot.style.left = x + 'px';
+        cursorDot.style.top = y + 'px';
         
-        crosshair.style.left = (x - 20) + 'px';
-        crosshair.style.top = (y - 20) + 'px';
+        crosshair.style.left = x + 'px';
+        crosshair.style.top = y + 'px';
     });
 
     // Efeito hover em elementos interativos
@@ -1010,64 +1012,9 @@ function initContactFormValidation() {
 
 
 
-// ===== SISTEMA DE ALTERNÂNCIA DE TEMA =====
-function initThemeToggle() {
-    const themeToggle = document.getElementById('themeToggle');
-    const toggleIcon = document.querySelector('.toggle-icon');
-    const body = document.body;
-
-    if (!themeToggle) return;
-
-    // Carrega tema salvo ou define padrão como escuro
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    applyTheme(savedTheme);
-
-    // Adiciona event listener para o toggle
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = body.classList.contains('light-theme') ? 'light' : 'dark';
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-
-        applyTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-
-    // Função para aplicar o tema
-    function applyTheme(theme) {
-        if (theme === 'light') {
-            body.classList.add('light-theme');
-            toggleIcon.className = 'toggle-icon fas fa-moon';
-        } else {
-            body.classList.remove('light-theme');
-            toggleIcon.className = 'toggle-icon fas fa-sun';
-        }
-
-        // Adiciona classe de transição
-        body.classList.add('theme-transition');
-
-        // Remove a classe de transição após a animação
-        setTimeout(() => {
-            body.classList.remove('theme-transition');
-        }, 300);
-    }
-
-    // Detecta preferência do sistema
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
-    mediaQuery.addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-            applyTheme(e.matches ? 'light' : 'dark');
-        }
-    });
-}
-
 // ===== FUNÇÕES GLOBAIS =====
 
-// Função legacy mantida para compatibilidade
-function toggleTheme() {
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.click();
-    }
-}
+
 
 // Função para compartilhar nas redes sociais
 function shareOnSocial(platform, url = window.location.href, text = 'Confira este portfólio incrível!') {
@@ -2030,11 +1977,75 @@ function handleVisibilityChange() {
     }
 }
 
+// Função para inicializar o toggle de tema
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (!themeToggle) return;
+
+    // Verificar tema salvo no localStorage
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+    // Aplicar tema inicial
+    applyTheme(currentTheme);
+    updateThemeToggleState(currentTheme);
+
+    // Event listener para o botão de toggle
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        
+        applyTheme(newTheme);
+        updateThemeToggleState(newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // Listener para mudanças na preferência do sistema
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+            const systemTheme = e.matches ? 'dark' : 'light';
+            applyTheme(systemTheme);
+            updateThemeToggleState(systemTheme);
+        }
+    });
+}
+
+// Função para aplicar o tema
+function applyTheme(theme) {
+    if (theme === 'light') {
+        document.body.classList.add('light-theme');
+    } else {
+        document.body.classList.remove('light-theme');
+    }
+}
+
+// Função para atualizar o estado do botão de toggle
+function updateThemeToggleState(theme) {
+    const themeToggle = document.getElementById('themeToggle');
+    const toggleIcon = themeToggle?.querySelector('.toggle-icon');
+    
+    if (!themeToggle || !toggleIcon) return;
+
+    if (theme === 'light') {
+        themeToggle.setAttribute('aria-pressed', 'true');
+        themeToggle.setAttribute('aria-label', 'Alternar para tema escuro');
+        toggleIcon.className = 'fas fa-sun toggle-icon';
+    } else {
+        themeToggle.setAttribute('aria-pressed', 'false');
+        themeToggle.setAttribute('aria-label', 'Alternar para tema claro');
+        toggleIcon.className = 'fas fa-moon toggle-icon';
+    }
+}
+
 // Event listeners para otimização
 document.addEventListener('visibilitychange', handleVisibilityChange);
 
 // Inicializar o sistema de estrelas quando a página carregar
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar tema primeiro para evitar flash
+    initThemeToggle();
+    
     // Aguarda um pouco para garantir que o CSS foi carregado
     setTimeout(() => {
         initStarsBackground();

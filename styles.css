@@ -45,22 +45,7 @@ body {
     --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Variáveis CSS para Tema Claro */
-body.light-theme {
-    --primary-color: #0f172a;
-    --secondary-color: #64748b;
-    --accent-color: #f59e0b;
-    --text-dark: #0f172a;
-    --text-light: #64748b;
-    --bg-light: #ffffff;
-    --bg-white: #f8fafc;
-    --border-color: #e2e8f0;
-    --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.15);
-    --gradient: linear-gradient(135deg, #f8fafc, #ffffff);
-}
-
-/* Transições suaves para mudança de tema */
+/* Transições suaves para animações */
 body.theme-transition,
 body.theme-transition *,
 body.theme-transition *:before,
@@ -75,33 +60,30 @@ body.theme-transition *:after {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(30px) saturate(180%);
-    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 1px 0 rgba(255, 255, 255, 0.05) inset,
+        0 -1px 0 rgba(255, 255, 255, 0.02) inset;
+    transform: translateZ(0);
+    will-change: background, box-shadow, border-color;
 }
 
 /* Estado ao rolar a página */
 .header.scrolled {
-    background: rgba(0, 0, 0, 0.9);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-}
-
-/* Ajustes para tema claro */
-body.light-theme .header {
-    background: rgba(255, 255, 255, 0.85);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-}
-
-body.light-theme .header.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(50px) saturate(220%) brightness(1.15);
+    -webkit-backdrop-filter: blur(50px) saturate(220%) brightness(1.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.5),
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 -1px 0 rgba(255, 255, 255, 0.03) inset;
 }
 
 /* Link ativo na navegação */
@@ -109,12 +91,6 @@ body.light-theme .header.scrolled {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-body.light-theme .nav-link.active {
-    color: var(--text-dark);
-    background: rgba(0, 0, 0, 0.04);
-    border: 1px solid var(--border-color);
 }
 
 /* Skip link para acessibilidade */
@@ -184,16 +160,21 @@ body.light-theme .nav-link.active {
     font-family: 'Rajdhani', sans-serif;
     color: #a1a1aa;
     text-decoration: none;
-    font-weight: 400;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     letter-spacing: 0.5px;
     font-size: 1.1rem;
-    padding: 12px 20px;
-    border-radius: 12px;
+    padding: 14px 24px;
+    border-radius: 16px;
     background: transparent;
     border: 1px solid transparent;
     overflow: hidden;
+    will-change: background-color, color, box-shadow, border-color, transform;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .nav-link::before {
@@ -205,6 +186,7 @@ body.light-theme .nav-link.active {
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     transition: all 0.6s ease;
+    pointer-events: none;
 }
 
 .nav-link::after {
@@ -215,27 +197,24 @@ body.light-theme .nav-link.active {
     width: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #ffffff, transparent);
-    transition: all 0.4s ease;
+    transition: width 0.25s ease;
     transform: translateX(-50%);
-}
+    pointer-events: none;
+ }
 
 .nav-link:hover,
 .nav-link:focus-visible {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px) scale(1.02);
+    transform: none;
     box-shadow: 0 8px 25px rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(10px);
     outline: none;
+    outline-offset: 2px;
 }
 
-body.light-theme .nav-link:hover,
-body.light-theme .nav-link:focus-visible {
-    color: var(--text-dark);
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--border-color);
-}
+
 
 .nav-link:hover::before {
     left: 100%;
@@ -1422,7 +1401,7 @@ section::before {
 
     .nav-link:hover {
         background: rgba(255, 255, 255, 0.15);
-        transform: translateY(-3px);
+        transform: none;
     }
 
     /* Hero section mobile */
@@ -4366,21 +4345,7 @@ body.light-theme {
     transition: all 0.3s ease;
 }
 
-/* Estado do tema claro */
-body.light-theme .toggle-thumb {
-    transform: translateX(30px);
-    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
-    box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
-}
 
-body.light-theme .toggle-icon::before {
-    content: "\f186"; /* ícone da lua */
-}
-
-body.light-theme .toggle-track {
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
-    border-color: rgba(0, 0, 0, 0.2);
-}
 
 /* Transições globais entre temas */
 body {
@@ -4389,275 +4354,7 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Estilos para tema claro */
 
-/* Header no tema claro */
-body.light-theme .header {
-    background: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px solid var(--border-primary);
-}
-
-body.light-theme .nav-logo h2 {
-    background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light-theme .nav-link {
-    color: var(--text-secondary);
-    background: transparent;
-    border: 1px solid transparent;
-}
-
-body.light-theme .nav-link:hover {
-    color: var(--text-primary);
-    background: var(--glass-bg);
-    border-color: var(--border-primary);
-}
-
-body.light-theme .nav-link.active {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Hero no tema claro - background removido para mostrar estrelas */
-body.light-theme .hero {
-    background: transparent;
-}
-
-/* Pseudo-elemento removido para permitir que as estrelas apareçam */
-
-body.light-theme .hero-title {
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 25%, var(--accent-pink) 50%, var(--accent-purple) 75%, var(--text-primary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light-theme .hero-greeting,
-body.light-theme .hero-subtitle,
-body.light-theme .hero-description {
-    color: var(--text-secondary);
-}
-
-/* Botões no tema claro */
-body.light-theme .btn {
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    color: var(--text-primary);
-    border: 1px solid var(--border-primary);
-}
-
-body.light-theme .btn:hover {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: var(--border-primary);
-    box-shadow: 0 10px 25px var(--shadow-primary);
-}
-
-body.light-theme .btn-primary {
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-    color: #ffffff;
-}
-
-body.light-theme .btn-secondary {
-    background: transparent;
-    color: var(--text-primary);
-    border: 2px solid var(--text-primary);
-}
-
-body.light-theme .btn-secondary:hover {
-    background: var(--text-primary);
-    color: var(--bg-primary);
-}
-
-/* Social links no tema claro */
-body.light-theme .social-link {
-    background: var(--glass-bg);
-    border: 1px solid var(--border-primary);
-    color: var(--text-primary);
-}
-
-body.light-theme .social-link:hover {
-    background: linear-gradient(135deg, var(--accent-blue), var(--accent-pink));
-    color: #ffffff;
-}
-
-/* Seção de serviços no tema claro */
-body.light-theme .services {
-    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-}
-
-body.light-theme .services::before {
-    background:
-        radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 90% 80%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.03) 0%, transparent 50%);
-}
-
-body.light-theme .section-title {
-    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 25%, var(--accent-pink) 50%, var(--accent-purple) 75%, var(--text-primary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-body.light-theme .section-subtitle {
-    color: var(--text-secondary);
-}
-
-body.light-theme .service-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border-primary);
-    box-shadow: 0 8px 25px var(--shadow-primary);
-}
-
-body.light-theme .service-card:hover {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: var(--border-primary);
-    box-shadow: 0 20px 40px var(--shadow-secondary);
-}
-
-body.light-theme .service-card.featured {
-    background: rgba(255, 255, 255, 0.95);
-    border: 2px solid rgba(14, 165, 233, 0.3);
-    box-shadow: 0 15px 30px rgba(14, 165, 233, 0.1);
-}
-
-body.light-theme .service-icon {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(236, 72, 153, 0.1));
-}
-
-body.light-theme .service-content h3 {
-    color: var(--text-primary);
-}
-
-body.light-theme .service-content p {
-    color: var(--text-secondary);
-}
-
-body.light-theme .service-features li {
-    color: var(--text-secondary);
-}
-
-body.light-theme .service-features i {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-body.light-theme .tech-tag {
-    background: rgba(0, 0, 0, 0.05);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-secondary);
-}
-
-
-
-body.light-theme .btn-service {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(236, 72, 153, 0.1));
-    border: 2px solid rgba(14, 165, 233, 0.2);
-    color: var(--text-primary);
-}
-
-body.light-theme .btn-service:hover {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(236, 72, 153, 0.2));
-    border-color: rgba(14, 165, 233, 0.4);
-}
-
-/* Contato no tema claro */
-body.light-theme .contact-header {
-    background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
-}
-
-body.light-theme .contact-card {
-    background: var(--glass-bg);
-    border: 1px solid var(--border-primary);
-}
-
-body.light-theme .contact-card:hover {
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 20px 40px var(--shadow-secondary);
-}
-
-body.light-theme .contact-icon {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(236, 72, 153, 0.1));
-    color: var(--text-primary);
-}
-
-body.light-theme .contact-details h4 {
-    color: var(--text-primary);
-}
-
-body.light-theme .contact-link {
-    color: var(--text-secondary);
-}
-
-body.light-theme .contact-link:hover {
-    color: #ffffff;
-}
-
-/* Formulário no tema claro */
-body.light-theme .contact-form-container {
-    background: var(--glass-bg);
-    border: 1px solid var(--border-primary);
-}
-
-body.light-theme .form-group input,
-body.light-theme .form-group textarea,
-body.light-theme .form-group select {
-    background: rgba(255, 255, 255, 0.8);
-    border: 2px solid var(--border-primary);
-    color: var(--text-primary);
-}
-
-body.light-theme .form-group input:focus,
-body.light-theme .form-group textarea:focus,
-body.light-theme .form-group select:focus {
-    border-color: #ffffff;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-body.light-theme .form-group label {
-    color: var(--text-secondary);
-    background: var(--bg-primary);
-}
-
-/* Mapa no tema claro */
-body.light-theme .map-section {
-    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
-}
-
-body.light-theme .map-wrapper {
-    box-shadow: 0 20px 40px var(--shadow-secondary);
-}
-
-body.light-theme .map-info {
-    background: var(--glass-bg);
-    border: 1px solid var(--border-primary);
-}
-
-body.light-theme .location-item {
-    background: rgba(0, 0, 0, 0.02);
-    border: 1px solid var(--border-secondary);
-}
-
-body.light-theme .location-item h5 {
-    color: var(--text-primary);
-}
-
-body.light-theme .location-item p {
-    color: var(--text-secondary);
-}
-
-/* Footer no tema claro */
-body.light-theme .footer {
-    background: var(--bg-secondary);
-    color: var(--text-secondary);
-    border-top: 1px solid var(--border-primary);
-}
 
 /* Animações e efeitos especiais para o rodapé */
 @keyframes footerGlow {
@@ -4697,44 +4394,9 @@ body.light-theme .footer {
     height: 100%;
 }
 
-body.light-theme .footer-info h3 {
-    background: linear-gradient(135deg, var(--text-primary), var(--accent-blue));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
 
-/* Animações do toggle */
-@keyframes toggleSlide {
-    from { transform: translateX(0); }
-    to { transform: translateX(30px); }
-}
 
-@keyframes toggleGlow {
-    0%, 100% { box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3); }
-    50% { box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5); }
-}
 
-/* Responsividade do toggle */
-@media (max-width: 768px) {
-    .toggle-track {
-        width: 50px;
-        height: 26px;
-    }
-
-    .toggle-thumb {
-        width: 20px;
-        height: 20px;
-    }
-
-    body.light-theme .toggle-thumb {
-        transform: translateX(24px);
-    }
-
-    .toggle-icon {
-        font-size: 10px;
-    }
-}
 
 /* Transições otimizadas para performance */
 * {
