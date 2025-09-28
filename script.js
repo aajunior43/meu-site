@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
 
     // Toggle do menu mobile
-    hamburger.addEventListener('click', function() {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
 
     // Fecha o menu ao clicar em um link
     navLinks.forEach(link => {
@@ -1977,79 +1979,372 @@ function handleVisibilityChange() {
     }
 }
 
-// Função para inicializar o toggle de tema
-function initThemeToggle() {
-    const themeToggle = document.getElementById('themeToggle');
-    if (!themeToggle) return;
-
-    // Verificar tema salvo no localStorage
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-
-    // Aplicar tema inicial
-    applyTheme(currentTheme);
-    updateThemeToggleState(currentTheme);
-
-    // Event listener para o botão de toggle
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = document.body.classList.contains('light-theme') ? 'light' : 'dark';
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        applyTheme(newTheme);
-        updateThemeToggleState(newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-
-    // Listener para mudanças na preferência do sistema
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-        if (!localStorage.getItem('theme')) {
-            const systemTheme = e.matches ? 'dark' : 'light';
-            applyTheme(systemTheme);
-            updateThemeToggleState(systemTheme);
-        }
-    });
-}
-
-// Função para aplicar o tema
-function applyTheme(theme) {
-    if (theme === 'light') {
-        document.body.classList.add('light-theme');
-    } else {
-        document.body.classList.remove('light-theme');
-    }
-}
-
-// Função para atualizar o estado do botão de toggle
-function updateThemeToggleState(theme) {
-    const themeToggle = document.getElementById('themeToggle');
-    const toggleIcon = themeToggle?.querySelector('.toggle-icon');
-    
-    if (!themeToggle || !toggleIcon) return;
-
-    if (theme === 'light') {
-        themeToggle.setAttribute('aria-pressed', 'true');
-        themeToggle.setAttribute('aria-label', 'Alternar para tema escuro');
-        toggleIcon.className = 'fas fa-sun toggle-icon';
-    } else {
-        themeToggle.setAttribute('aria-pressed', 'false');
-        themeToggle.setAttribute('aria-label', 'Alternar para tema claro');
-        toggleIcon.className = 'fas fa-moon toggle-icon';
-    }
-}
-
 // Event listeners para otimização
 document.addEventListener('visibilitychange', handleVisibilityChange);
 
 // Inicializar o sistema de estrelas quando a página carregar
 document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar tema primeiro para evitar flash
-    initThemeToggle();
-    
     // Aguarda um pouco para garantir que o CSS foi carregado
     setTimeout(() => {
         initStarsBackground();
         optimizeStarsPerformance();
     }, 500);
+    
+    // Inicializar funcionalidades específicas da página Linktree
+    if (document.body.classList.contains('linktree-page')) {
+        initLinktreePage();
+    }
 });
+
+// ===== FUNCIONALIDADES DA PÁGINA LINKTREE =====
+
+function initLinktreePage() {
+    initLinkTracking();
+    initQRCodeModal();
+    initProfileAnimations();
+    initLinkAnimations();
+    updateSocialStats();
+}
+
+// Rastreamento de cliques nos links
+function initLinkTracking() {
+    const linkCards = document.querySelectorAll('.link-card');
+    
+    linkCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            const linkTitle = this.querySelector('.link-title').textContent;
+            const linkUrl = this.getAttribute('href');
+            
+            // Adiciona efeito visual de clique
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            // Log do clique (pode ser usado para analytics)
+            console.log(`Link clicado: ${linkTitle} - ${linkUrl}`);
+            
+            // Adiciona um pequeno delay para o efeito visual antes de navegar
+            if (linkUrl && linkUrl !== '#') {
+                e.preventDefault();
+                setTimeout(() => {
+                    window.open(linkUrl, '_blank');
+                }, 100);
+            }
+        });
+        
+        // Efeito de hover aprimorado
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-4px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+}
+
+// Modal do QR Code
+function initQRCodeModal() {
+    const qrBtn = document.getElementById('qr-btn');
+    const qrModal = document.getElementById('qr-modal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    if (qrBtn && qrModal) {
+        qrBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            generateQRCode();
+            qrModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Fechar modal
+        if (closeModal) {
+            closeModal.addEventListener('click', function() {
+                qrModal.style.display = 'none';
+                document.body.style.overflow = '';
+            });
+        }
+        
+        // Fechar modal clicando fora
+        qrModal.addEventListener('click', function(e) {
+            if (e.target === qrModal) {
+                qrModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && qrModal.style.display === 'flex') {
+                qrModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    }
+}
+
+// Gerar QR Code
+function generateQRCode() {
+    const qrContainer = document.getElementById('qr-code');
+    if (!qrContainer) return;
+    
+    // Limpa o container
+    qrContainer.innerHTML = '';
+    
+    // URL atual da página
+    const currentUrl = window.location.href;
+    
+    // Cria um canvas para o QR code (implementação simples)
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = 200;
+    canvas.height = 200;
+    
+    // Fundo branco
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, 200, 200);
+    
+    // Desenha um padrão simples (placeholder para QR real)
+    ctx.fillStyle = '#000000';
+    for (let i = 0; i < 20; i++) {
+        for (let j = 0; j < 20; j++) {
+            if ((i + j) % 3 === 0) {
+                ctx.fillRect(i * 10, j * 10, 8, 8);
+            }
+        }
+    }
+    
+    // Adiciona texto indicativo
+    ctx.fillStyle = '#4fc3f7';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('QR Code', 100, 190);
+    
+    qrContainer.appendChild(canvas);
+    
+    // Adiciona informação sobre o URL
+    const urlInfo = document.createElement('p');
+    urlInfo.textContent = `Escaneie para acessar: ${currentUrl}`;
+    qrContainer.appendChild(urlInfo);
+}
+
+// Animações do perfil
+function initProfileAnimations() {
+    const avatar = document.querySelector('.profile-avatar');
+    const profileName = document.querySelector('.profile-name');
+    
+    if (avatar) {
+        // Animação de rotação sutil no avatar
+        let rotation = 0;
+        setInterval(() => {
+            rotation += 0.5;
+            if (avatar.querySelector('.avatar-ring')) {
+                avatar.querySelector('.avatar-ring').style.transform = `rotate(${rotation}deg)`;
+            }
+        }, 100);
+        
+        // Efeito de clique no avatar
+        avatar.addEventListener('click', function() {
+            this.style.transform = 'scale(1.1) rotate(5deg)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 300);
+        });
+    }
+    
+    // Efeito de digitação no nome (opcional)
+    if (profileName) {
+        const originalText = profileName.textContent;
+        let isAnimating = false;
+        
+        profileName.addEventListener('click', function() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            let currentText = '';
+            let index = 0;
+            
+            this.textContent = '';
+            
+            const typeInterval = setInterval(() => {
+                currentText += originalText[index];
+                this.textContent = currentText + '|';
+                index++;
+                
+                if (index >= originalText.length) {
+                    clearInterval(typeInterval);
+                    this.textContent = originalText;
+                    isAnimating = false;
+                }
+            }, 100);
+        });
+    }
+}
+
+// Animações dos links
+function initLinkAnimations() {
+    const linkCards = document.querySelectorAll('.link-card');
+    
+    // Animação de entrada escalonada
+    linkCards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        
+        setTimeout(() => {
+            card.style.transition = 'all 0.6s ease';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 200 + (index * 100));
+    });
+    
+    // Efeito de onda nos links
+    const createRipple = (e, element) => {
+        const ripple = document.createElement('span');
+        const rect = element.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const x = e.clientX - rect.left - size / 2;
+        const y = e.clientY - rect.top - size / 2;
+        
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            left: ${x}px;
+            top: ${y}px;
+            background: rgba(79, 195, 247, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s ease-out;
+            pointer-events: none;
+            z-index: 1;
+        `;
+        
+        element.style.position = 'relative';
+        element.style.overflow = 'hidden';
+        element.appendChild(ripple);
+        
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
+    };
+    
+    // Adiciona CSS para animação de ripple
+    if (!document.querySelector('#ripple-animation')) {
+        const style = document.createElement('style');
+        style.id = 'ripple-animation';
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    linkCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+            createRipple(e, this);
+        });
+    });
+}
+
+// Atualizar estatísticas sociais (simulado)
+function updateSocialStats() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    
+    statNumbers.forEach(stat => {
+        const finalValue = parseInt(stat.textContent.replace(/\D/g, ''));
+        let currentValue = 0;
+        const increment = finalValue / 50;
+        
+        stat.textContent = '0';
+        
+        const counter = setInterval(() => {
+            currentValue += increment;
+            if (currentValue >= finalValue) {
+                stat.textContent = finalValue.toLocaleString();
+                clearInterval(counter);
+            } else {
+                stat.textContent = Math.floor(currentValue).toLocaleString();
+            }
+        }, 30);
+    });
+}
+
+// Função para compartilhar perfil
+function shareProfile() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'Meu Perfil',
+            text: 'Confira meus links e projetos!',
+            url: window.location.href
+        }).catch(console.error);
+    } else {
+        // Fallback para navegadores que não suportam Web Share API
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            showNotification('Link copiado para a área de transferência!');
+        }).catch(() => {
+            showNotification('Não foi possível copiar o link.');
+        });
+    }
+}
+
+// Função para mostrar notificações
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: rgba(79, 195, 247, 0.9);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        z-index: 10000;
+        animation: slideInRight 0.3s ease;
+    `;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Adiciona CSS para animações de notificação
+if (!document.querySelector('#notification-animations')) {
+    const style = document.createElement('style');
+    style.id = 'notification-animations';
+    style.textContent = `
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+}
 
