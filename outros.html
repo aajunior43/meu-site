@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outros Projetos - Aleksandro Alves</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Projetos adicionais e ferramentas especiais - Acesso restrito">
+    <meta name="keywords" content="projetos, ferramentas, desenvolvimento, programação">
+    <meta name="author" content="Aleksandro Alves da Rocha Junior">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style" crossorigin>
+    <link rel="preload" href="script.js" as="script" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="accessibility.css">
+
+    <!-- External resources -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <style>
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .auth-header {
+            margin-bottom: 2rem;
+        }
+
+        .auth-header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00f5ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+        }
+
+        .password-form {
+            margin-bottom: 2rem;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            box-sizing: border-box;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #00f5ff;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .auth-btn {
+            background: linear-gradient(135deg, #ff00ff, #00f5ff);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 0, 255, 0.3);
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 1rem;
+            font-weight: bold;
+            display: none;
+        }
+
+        .projects-container {
+            display: none;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.2);
+        }
+
+        .project-icon {
+            font-size: 3rem;
+            color: #00f5ff;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #00f5ff, #ff00ff);
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 245, 255, 0.3);
+        }
+
+        .logout-btn {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: none;
+            z-index: 1000;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 0, 0, 1);
+        }
+
+        @media (max-width: 768px) {
+            .auth-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .auth-header h1 {
+                font-size: 2rem;
+            }
+
+            .projects-container {
+                padding: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logout-btn {
+                top: 80px;
+                right: 10px;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#outros" class="skip-link">Pular para o conteúdo</a>
+    
+    <!-- Fundo de Estrelas -->
+    <div class="stars-background">
+        <div class="stars-layer stars-layer-1"></div>
+        <div class="stars-layer stars-layer-2"></div>
+        <div class="stars-layer stars-layer-3"></div>
+        <div class="comet-container"></div>
+    </div>
+
+    <!-- Header e Navegação -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="logo-link" aria-label="Ir para a página inicial">
+                        <h2>Aleksandro Alves</h2>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="portfolio.html" class="nav-link">Portfólio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="certificates.html" class="nav-link">Certificados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="outros.html" class="nav-link active">OUTROS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="linktree.html" class="nav-link">Links</a>
+                    </li>
+                </ul>
+                <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
+                    <i class="fas fa-moon toggle-icon" aria-hidden="true"></i>
+                    <span class="sr-only">Alternar tema claro/escuro</span>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sistema de Partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Botão de Logout -->
+    <button id="logoutBtn" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Sair
+    </button>
+
+    <!-- Conteúdo Principal -->
+    <main id="outros" class="main-content">
+        <div class="container">
+            <!-- Formulário de Autenticação -->
+            <div id="authContainer" class="auth-container">
+                <div class="auth-header">
+                    <h1><i class="fas fa-lock"></i> Acesso Restrito</h1>
+                    <p>Digite a senha para acessar os projetos adicionais</p>
+                </div>
+                <form id="passwordForm" class="password-form">
+                    <input 
+                        type="password" 
+                        id="passwordInput" 
+                        class="password-input" 
+                        placeholder="Digite a senha..."
+                        aria-label="Campo de senha"
+                        required
+                    >
+                    <button type="submit" class="auth-btn">
+                        <i class="fas fa-unlock"></i> Acessar
+                    </button>
+                    <div id="errorMessage" class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i> Senha incorreta! Tente novamente.
+                    </div>
+                </form>
+            </div>
+
+            <!-- Container dos Projetos (oculto inicialmente) -->
+            <div id="projectsContainer" class="projects-container">
+                <div class="auth-header">
+                    <h1><i class="fas fa-tools"></i> Projetos Adicionais</h1>
+                    <p>Ferramentas e projetos especiais desenvolvidos</p>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3 class="project-title">Contador de Caracteres</h3>
+                        <p class="project-description">
+                            Ferramenta para contar caracteres, palavras e linhas em tempo real. 
+                            Útil para redes sociais e documentos.
+                        </p>
+                        <a href="contador.html" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Acessar
+                        </a>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <h3 class="project-title">Calculadora Regra de 3</h3>
+                        <p class="project-description">
+                            Calculadora simples e eficiente para resolver problemas de regra de três. 
+                            Interface intuitiva e resultados precisos.
+                        </p>
+                        <a href="regra-de-3.html" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Acessar
+                        </a>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="project-title">Mais Projetos</h3>
+                        <p class="project-description">
+                            Outros projetos e ferramentas estão sendo desenvolvidos. 
+                            Em breve mais funcionalidades estarão disponíveis.
+                        </p>
+                        <a href="#" class="project-link" onclick="alert('Em desenvolvimento!')">
+                            <i class="fas fa-clock"></i> Em Breve
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Aleksandro Alves da Rocha Junior. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="index.html">Início</a>
+                    <a href="about.html">Sobre</a>
+                    <a href="contact.html">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        // Sistema de Autenticação
+        document.addEventListener('DOMContentLoaded', function() {
+            const passwordForm = document.getElementById('passwordForm');
+            const passwordInput = document.getElementById('passwordInput');
+            const errorMessage = document.getElementById('errorMessage');
+            const authContainer = document.getElementById('authContainer');
+            const projectsContainer = document.getElementById('projectsContainer');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            const correctPassword = '19991020';
+            
+            // Verificar se já está autenticado
+            if (sessionStorage.getItem('authenticated') === 'true') {
+                showProjects();
+            }
+            
+            // Submissão do formulário
+            passwordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const enteredPassword = passwordInput.value;
+                
+                if (enteredPassword === correctPassword) {
+                    // Senha correta
+                    sessionStorage.setItem('authenticated', 'true');
+                    showProjects();
+                    errorMessage.style.display = 'none';
+                } else {
+                    // Senha incorreta
+                    errorMessage.style.display = 'block';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                    
+                    // Shake animation
+                    authContainer.style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        authContainer.style.animation = '';
+                    }, 500);
+                }
+            });
+            
+            // Botão de logout
+            logoutBtn.addEventListener('click', function() {
+                sessionStorage.removeItem('authenticated');
+                hideProjects();
+            });
+            
+            function showProjects() {
+                authContainer.style.display = 'none';
+                projectsContainer.style.display = 'block';
+                logoutBtn.style.display = 'block';
+            }
+            
+            function hideProjects() {
+                authContainer.style.display = 'block';
+                projectsContainer.style.display = 'none';
+                logoutBtn.style.display = 'none';
+                passwordInput.value = '';
+                errorMessage.style.display = 'none';
+                passwordInput.focus();
+            }
+            
+            // Foco inicial no campo de senha
+            passwordInput.focus();
+        });
+        
+        // CSS para animação de shake
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

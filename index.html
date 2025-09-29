@@ -59,7 +59,6 @@
     <!-- Preload critical resources -->
     <link rel="preload" href="styles.css" as="style" crossorigin>
     <link rel="preload" href="script.js" as="script" crossorigin>
-    <link rel="preload" as="font" href="https://fonts.gstatic.com/s/rajdhani/v15/LDI2apCSOBg7S-QT7pasQdOqjH4.woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -70,13 +69,14 @@
 
     <!-- Critical CSS -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-optimized.css">
     <link rel="stylesheet" href="accessibility.css">
 
     <!-- External resources with performance optimizations -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
     <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"></noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'; this.onload=null;">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet"></noscript>
 
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
@@ -119,6 +119,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="certificates.html" class="nav-link">Certificados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="outros.html" class="nav-link">OUTROS</a>
                     </li>
                     <li class="nav-item">
                         <a href="contact.html" class="nav-link">Contato</a>
@@ -253,7 +256,7 @@
     </main>
 
     <!-- Seção Sobre Resumida -->
-    <section id="about-preview" class="about-preview" aria-labelledby="about-title">
+    <section id="about-preview" class="about-preview lazy-load" aria-labelledby="about-title">
         <div class="container">
             <header class="section-header">
                 <h2 id="about-title">Sobre Mim</h2>
@@ -375,6 +378,8 @@
         <i class="fas fa-comments" aria-hidden="true"></i>
         <span>Vamos conversar</span>
     </a>
+    <!-- Scripts -->
+    <script src="performance.js"></script>
     <script src="script.js" defer></script>
 
     <!-- Performance monitoring -->

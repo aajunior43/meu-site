@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Caracteres</title>
+    
+    <!-- CSS do site original para navegação -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Estilos originais do contador -->
+    <style>
+        /* Mantendo os estilos originais do contador */
+        .contador-content {
+            font-family: Arial, sans-serif;
+            background-color: #141414;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            min-height: 80vh;
+            justify-content: center;
+        }
+        
+        .contador-content h2 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        #input {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            max-width: 500px;
+            min-height: 200px;
+            resize: vertical;
+        }
+        
+        #input:focus {
+            outline: 2px solid #E50914;
+        }
+        
+        #output {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #E50914; /* cor vermelha da Netflix */
+            font-size: 1.5rem;
+        }
+        
+        /* Ajustes para responsividade */
+        @media (max-width: 768px) {
+            #input {
+                padding: 20px;
+                font-size: 14px;
+            }
+            
+            .contador-content h2 {
+                font-size: 1.5rem;
+            }
+            
+            #output {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#contador" class="skip-link">Pular para o conteúdo</a>
+    
+    <!-- Fundo de Estrelas -->
+    <div class="stars-background">
+        <div class="stars-layer stars-layer-1"></div>
+        <div class="stars-layer stars-layer-2"></div>
+        <div class="stars-layer stars-layer-3"></div>
+        <div class="comet-container"></div>
+    </div>
+
+    <!-- Header e Navegação -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="logo-link" aria-label="Ir para a página inicial">
+                        <h2>Aleksandro Alves</h2>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="portfolio.html" class="nav-link">Portfólio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="certificates.html" class="nav-link">Certificados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="outros.html" class="nav-link">OUTROS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="linktree.html" class="nav-link">Links</a>
+                    </li>
+                </ul>
+                <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
+                    <i class="fas fa-moon toggle-icon" aria-hidden="true"></i>
+                    <span class="sr-only">Alternar tema claro/escuro</span>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sistema de Partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Conteúdo original do contador -->
+    <main id="contador" class="contador-content">
+        <h2>Contador de Caracteres</h2>
+        <textarea id="input" rows="5" cols="30" placeholder="Digite seu texto aqui..."></textarea>
+        <div id="output">0 caracteres</div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Aleksandro Alves da Rocha Junior. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="index.html">Início</a>
+                    <a href="about.html">Sobre</a>
+                    <a href="contact.html">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts do site -->
+    <script src="script.js"></script>
+    
+    <!-- Script original do contador -->
+    <script>
+        const input = document.querySelector('#input');
+        const output = document.querySelector('#output');
+
+        input.addEventListener('input', () => {
+            const count = input.value.length;
+            output.textContent = count + ' caracteres';
+        });
+    </script>
+</body>
+</html>
