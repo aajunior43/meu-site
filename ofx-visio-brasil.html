@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFX Visio Brasil - Visualizador de Extratos</title>
+
+    <meta name="description" content="Faça upload de arquivos OFX e visualize transações, totais e resumo.">
+    <meta name="author" content="Aleksandro Alves da Rocha Junior">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style" crossorigin>
+    <link rel="preload" href="ofx-visio-brasil.js" as="script" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Fundo de Estrelas -->
+    <div class="stars-background">
+        <div class="stars-layer stars-layer-1"></div>
+        <div class="stars-layer stars-layer-2"></div>
+        <div class="stars-layer stars-layer-3"></div>
+        <div class="comet-container"></div>
+    </div>
+
+    <!-- Header e Navegação -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="logo-link" aria-label="Ir para a página inicial">
+                        <h2>Aleksandro Alves</h2>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">Sobre</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+                    <li class="nav-item"><a href="certificates.html" class="nav-link">Certificados</a></li>
+                    <li class="nav-item"><a href="outros.html" class="nav-link">OUTROS</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contato</a></li>
+                    <li class="nav-item"><a href="linktree.html" class="nav-link">Links</a></li>
+                </ul>
+                <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
+                    <i class="fas fa-moon toggle-icon" aria-hidden="true"></i>
+                    <span class="sr-only">Alternar tema claro/escuro</span>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sistema de Partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Conteúdo Principal -->
+    <main id="main" class="main-content">
+        <div class="container">
+            <section class="auth-header" style="text-align:center;margin-bottom:1rem;">
+                <h1><i class="fas fa-file-invoice-dollar"></i> OFX Visio Brasil</h1>
+                <p>Envie um arquivo OFX para visualizar transações, totais e resumo.</p>
+            </section>
+
+            <div class="projects-grid" style="grid-template-columns: 1fr;">
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-upload"></i></div>
+                    <h3 class="project-title">Carregar Extrato OFX</h3>
+                    <p class="project-description">Suporta arquivos com transações bancárias no formato OFX.</p>
+
+                    <div class="busca-container">
+                        <div class="busca-row">
+                            <input type="file" id="arquivoOfx" accept=".ofx" aria-label="Arquivo OFX">
+                        </div>
+                        <div class="busca-row">
+                            <button id="btnProcessar" class="project-link" type="button"><i class="fas fa-play"></i> Processar</button>
+                            <button id="btnBaixarCsv" class="project-link" type="button" style="margin-left:10px;"><i class="fas fa-download"></i> Baixar CSV</button>
+                        </div>
+                    </div>
+
+                    <div id="resumo" class="project-description" aria-live="polite"></div>
+                    <div style="overflow-x:auto; margin-top: 1rem;">
+                        <table id="tabelaTransacoes" class="table" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Valor</th>
+                                    <th>Descrição</th>
+                                    <th>Detalhes</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <p class="project-description" style="margin-top:1rem;">
+                        Código original: <a href="https://github.com/aajunior43/ofx-visio-brasil" target="_blank" rel="noopener noreferrer">aajunior43/ofx-visio-brasil</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Aleksandro Alves da Rocha Junior. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="index.html">Início</a>
+                    <a href="about.html">Sobre</a>
+                    <a href="contact.html">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="performance.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="ofx-visio-brasil.js" defer></script>
+</body>
+</html>
