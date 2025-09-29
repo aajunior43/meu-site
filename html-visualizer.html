@@ -3,201 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Visualizer - Editor e Visualizador de HTML</title>
     <meta name="description" content="Visualizador e Download de HTML - Visualize código HTML em tempo real e faça download">
-    <meta name="keywords" content="html, visualizador, editor, download, código, desenvolvimento">
-    <meta name="author" content="Aleksandro Alves">
-    <title>HTML Visualizer - Visualizador de HTML</title>
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" as="style">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Critical CSS -->
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Roboto Mono', monospace;
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             color: #00ff00;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-        
-        .header {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            border-bottom: 2px solid #00ff00;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .logo {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #00ff00;
-            text-decoration: none;
-            text-shadow: 0 0 10px #00ff00;
-        }
-        
-        .back-btn {
-            background: linear-gradient(45deg, #00ff00, #00cc00);
-            color: #000000;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
-        }
-        
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 1rem;
+            overflow-x: hidden;
             position: relative;
-            overflow: hidden;
         }
-        
-        .title-section {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        
-        .main-title {
-            font-family: 'Orbitron', monospace;
-            font-size: 2rem;
-            color: #00ff00;
-            text-shadow: 
-                0 0 10px #00ff00,
-                0 0 20px #00ff00,
-                0 0 40px #00ff00;
-            margin-bottom: 0.5rem;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-        
-        .subtitle {
-            color: #00cc00;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-        
-        .container {
-            display: flex;
-            flex: 1;
-            gap: 1rem;
-            min-height: 0;
-        }
-        
-        .input-section, .output-section {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: rgba(0, 0, 0, 0.7);
-            border: 1px solid #00ff00;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
-        }
-        
-        .section-header {
-            background: rgba(0, 255, 0, 0.1);
-            padding: 0.75rem;
-            border-bottom: 1px solid #00ff00;
-            font-weight: 700;
-            text-align: center;
-            color: #00ff00;
-            text-shadow: 0 0 5px #00ff00;
-        }
-        
-        #htmlInput {
-            flex: 1;
-            background: #000000;
-            color: #00ff00;
-            border: none;
-            padding: 1rem;
-            font-family: 'Roboto Mono', monospace;
-            font-size: 14px;
-            resize: none;
-            outline: none;
-            line-height: 1.5;
-        }
-        
-        #htmlInput::placeholder {
-            color: #006600;
-        }
-        
-        #htmlInput:focus {
-            background: rgba(0, 255, 0, 0.05);
-        }
-        
-        #htmlOutput {
-            flex: 1;
-            border: none;
-            background: #ffffff;
-            width: 100%;
-        }
-        
-        .controls {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            display: flex;
-            gap: 1rem;
-            z-index: 1000;
-        }
-        
-        .btn {
-            background: linear-gradient(45deg, #00ff00, #00cc00);
-            color: #000000;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Roboto Mono', monospace;
-            text-transform: uppercase;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.4);
-        }
-        
-        .btn-secondary {
-            background: linear-gradient(45deg, #333333, #555555);
-            color: #00ff00;
-        }
-        
-        .btn-secondary:hover {
-            box-shadow: 0 5px 15px rgba(0, 255, 0, 0.2);
-        }
-        
+
         .matrix-bg {
             position: fixed;
             top: 0;
@@ -206,56 +34,178 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
-            opacity: 0.1;
+            overflow: hidden;
         }
-        
+
         .matrix-char {
             position: absolute;
             color: #00ff00;
             font-family: 'Roboto Mono', monospace;
-            font-size: 12px;
+            font-size: 14px;
+            opacity: 0.3;
             animation: fall linear infinite;
         }
-        
-        .status-bar {
-            background: rgba(0, 0, 0, 0.8);
-            border-top: 1px solid #00ff00;
-            padding: 0.5rem 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
-            color: #00cc00;
-        }
-        
-        .char-count {
-            color: #00ff00;
-        }
-        
-        @keyframes glow {
-            from {
-                text-shadow: 
-                    0 0 10px #00ff00,
-                    0 0 20px #00ff00,
-                    0 0 40px #00ff00;
-            }
-            to {
-                text-shadow: 
-                    0 0 5px #00ff00,
-                    0 0 10px #00ff00,
-                    0 0 20px #00ff00;
-            }
-        }
-        
+
         @keyframes fall {
             to {
                 transform: translateY(100vh);
             }
         }
-        
+
+        .container {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #00ff00;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #00cc00;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            border-color: #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            gap: 1rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .input-section, .output-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff00;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 1rem;
+            border-bottom: 1px solid #00ff00;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #htmlInput {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.9);
+            color: #00ff00;
+            border: none;
+            padding: 1rem;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 14px;
+            resize: none;
+            outline: none;
+            min-height: 400px;
+        }
+
+        #htmlInput::placeholder {
+            color: #006600;
+        }
+
+        #htmlOutput {
+            flex: 1;
+            border: none;
+            background: white;
+            min-height: 400px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 20;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #00ff00, #00cc00);
+            color: #000;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Roboto Mono', monospace;
+            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 255, 0, 0.5);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #ff4444, #cc0000);
+            color: white;
+        }
+
+        .status-bar {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 0.5rem 2rem;
+            border-top: 1px solid #00ff00;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .char-count {
+            color: #00cc00;
+            font-weight: bold;
+        }
+
         @media (max-width: 768px) {
-            .container {
+            .main-container {
                 flex-direction: column;
+                padding: 1rem;
             }
             
             .nav-container {
@@ -272,76 +222,35 @@
                 justify-content: center;
                 margin-top: 1rem;
             }
-            
-            .main-container {
-                padding: 0.5rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .main-title {
-                font-size: 1.2rem;
-            }
-            
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 200px;
-            }
         }
     </style>
-    
-    <!-- External resources -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌐</text></svg>">
 </head>
 <body>
     <div class="matrix-bg" id="matrixBg"></div>
     
-    <header class="header">
-        <nav class="nav-container">
-            <a href="index.html" class="logo">🌐 HTML Visualizer</a>
-            <a href="outros.html" class="back-btn">← Voltar</a>
-        </nav>
-    </header>
+    <div class="container">
+        <header class="header">
+            <div class="nav-container">
+                <h1 class="main-title">
+                    <i class="fas fa-code"></i> HTML Visualizer
+                </h1>
+                <nav class="nav-links">
+                    <a href="index.html" class="nav-link">
+                        <i class="fas fa-home"></i> Início
+                    </a>
+                    <a href="outros.html" class="nav-link">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </a>
+                </nav>
+            </div>
+        </header>
 
-    <main class="main-container">
-        <div class="title-section">
-            <h1 class="main-title">Visualizador de HTML</h1>
-            <p class="subtitle">Cole seu código HTML e visualize o resultado em tempo real</p>
-        </div>
-        
-        <div class="container">
+        <main class="main-container">
             <div class="input-section">
                 <div class="section-header">
-                    <i class="fas fa-code"></i> Código HTML
+                    <i class="fas fa-edit"></i> Editor HTML
                 </div>
-                <textarea id="htmlInput" placeholder="Cole seu código HTML aqui...
-Exemplo:
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Minha Página</title>
-    <style>
-        body { font-family: Arial; }
-        h1 { color: blue; }
-    </style>
-</head>
-<body>
-    <h1>Olá Mundo!</h1>
-    <p>Esta é uma página de exemplo.</p>
-</body>
-</html>"></textarea>
+                <textarea id="htmlInput" placeholder="Cole seu código HTML aqui..."></textarea>
             </div>
             
             <div class="output-section">
@@ -350,13 +259,13 @@ Exemplo:
                 </div>
                 <iframe id="htmlOutput" title="Visualização HTML" sandbox="allow-scripts allow-same-origin"></iframe>
             </div>
-        </div>
+        </main>
         
         <div class="status-bar">
             <span>Status: <span id="status">Pronto</span></span>
             <span>Caracteres: <span id="charCount" class="char-count">0</span></span>
         </div>
-    </main>
+    </div>
 
     <div class="controls">
         <button id="clearBtn" class="btn btn-secondary">
@@ -484,76 +393,6 @@ Exemplo:
         // Inicializar
         createMatrixEffect();
         htmlInput.focus();
-        
-        // Exemplo inicial
-        const exampleHTML = `<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo - HTML Visualizer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            backdrop-filter: blur(10px);
-        }
-        button {
-            background: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #45a049;
-        }
-    </style>
-</head>
-<body>
-    <h1>🌐 Bem-vindo ao HTML Visualizer!</h1>
-    
-    <div class="card">
-        <h2>✨ Funcionalidades</h2>
-        <ul>
-            <li>Visualização em tempo real</li>
-            <li>Download do código HTML</li>
-            <li>Interface moderna e responsiva</li>
-            <li>Suporte a CSS e JavaScript</li>
-        </ul>
-    </div>
-    
-    <div class="card">
-        <h2>🚀 Como usar</h2>
-        <p>1. Cole seu código HTML no painel esquerdo</p>
-        <p>2. Veja o resultado em tempo real no painel direito</p>
-        <p>3. Clique em "Download HTML" para salvar o arquivo</p>
-        
-        <button onclick="alert('Exemplo funcionando!')">Clique aqui!</button>
-    </div>
-    
-    <script>
-        console.log('HTML Visualizer carregado com sucesso!');
-    </script>
-</body>
-</html>`;
-
-        // Carregar exemplo após um pequeno delay
-        setTimeout(() => {
-            htmlInput.value = exampleHTML;
-            htmlInput.dispatchEvent(new Event('input'));
-        }, 1000);
     </script>
 </body>
 </html>
