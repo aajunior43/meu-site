@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Números Aleatórios - Aleksandro Alves</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Gerador de números e caracteres aleatórios com opções personalizáveis">
+    <meta name="keywords" content="gerador, números aleatórios, caracteres, senhas, ferramenta">
+    <meta name="author" content="Aleksandro Alves da Rocha Junior">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style" crossorigin>
+    <link rel="preload" href="script.js" as="script" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="accessibility.css">
+
+    <!-- External resources -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <style>
+        .tool-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tool-header h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #00f5ff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .config-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 245, 255, 0.2);
+        }
+
+        .config-section h3 {
+            color: #00f5ff;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', monospace;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .quantity-input {
+            width: 100%;
+            max-width: 200px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(0, 245, 255, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quantity-input:focus {
+            outline: none;
+            border-color: #00f5ff;
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #ffffff;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(0, 245, 255, 0.3);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #00f5ff;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .action-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 0, 255, 0.2);
+        }
+
+        .action-section h3 {
+            color: #ff00ff;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', monospace;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff00ff, #00f5ff);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #00ff00, #00f5ff);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.3);
+        }
+
+        .result-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+
+        .result-section h3 {
+            color: #00ff00;
+            margin-bottom: 1rem;
+            font-family: 'Orbitron', monospace;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .result-display {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(0, 255, 0, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: break-all;
+            line-height: 1.5;
+        }
+
+        .result-display.empty {
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.8rem;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .info-box {
+            background: rgba(255, 255, 0, 0.1);
+            border: 1px solid rgba(255, 255, 0, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: #ffff00;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+
+            .tool-header h1 {
+                font-size: 2rem;
+            }
+
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                min-width: auto;
+            }
+
+            .back-btn {
+                top: 80px;
+                left: 10px;
+                padding: 0.6rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+    
+    <!-- Fundo de Estrelas -->
+    <div class="stars-background">
+        <div class="stars-layer stars-layer-1"></div>
+        <div class="stars-layer stars-layer-2"></div>
+        <div class="stars-layer stars-layer-3"></div>
+        <div class="comet-container"></div>
+    </div>
+
+    <!-- Header e Navegação -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="logo-link" aria-label="Ir para a página inicial">
+                        <h2>Aleksandro Alves</h2>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="portfolio.html" class="nav-link">Portfólio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="certificates.html" class="nav-link">Certificados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="outros.html" class="nav-link">OUTROS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="linktree.html" class="nav-link">Links</a>
+                    </li>
+                </ul>
+                <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
+                    <i class="fas fa-moon toggle-icon" aria-hidden="true"></i>
+                    <span class="sr-only">Alternar tema claro/escuro</span>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sistema de Partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Botão Voltar -->
+    <button class="back-btn" onclick="history.back()" aria-label="Voltar à página anterior">
+        <i class="fas fa-arrow-left"></i>
+    </button>
+
+    <!-- Conteúdo Principal -->
+    <main id="main" class="main-content">
+        <div class="container">
+            <div class="tool-container">
+                <div class="tool-header">
+                    <h1><i class="fas fa-random"></i> Gerador de Números Aleatórios</h1>
+                    <p>Gere sequências aleatórias personalizáveis com números, letras e caracteres especiais</p>
+                </div>
+
+                <!-- Seção de Configuração -->
+                <div class="config-section">
+                    <h3><i class="fas fa-cogs"></i> Configurações</h3>
+                    <label for="quantidadeCaracteres" style="color: #ffffff; font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; margin-bottom: 0.5rem; display: block;">
+                        Quantidade de caracteres:
+                    </label>
+                    <input 
+                        type="number" 
+                        id="quantidadeCaracteres" 
+                        class="quantity-input"
+                        placeholder="Ex: 8" 
+                        min="1" 
+                        max="100" 
+                        value="8"
+                        aria-label="Quantidade de caracteres a gerar"
+                    >
+                    
+                    <div class="checkbox-grid">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="checkboxNumeros" checked aria-describedby="numeros-help">
+                            <label for="checkboxNumeros">
+                                <i class="fas fa-hashtag"></i> Números (0-9)
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="checkboxLetras" checked aria-describedby="letras-help">
+                            <label for="checkboxLetras">
+                                <i class="fas fa-font"></i> Letras Minúsculas (a-z)
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="checkboxLetrasMaiusculas" checked aria-describedby="maiusculas-help">
+                            <label for="checkboxLetrasMaiusculas">
+                                <i class="fas fa-font"></i> Letras Maiúsculas (A-Z)
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="checkboxCaracteresEspeciais" checked aria-describedby="especiais-help">
+                            <label for="checkboxCaracteresEspeciais">
+                                <i class="fas fa-asterisk"></i> Caracteres Especiais (!@#$...)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <i class="fas fa-info-circle"></i> 
+                        Selecione pelo menos um tipo de caractere para gerar a sequência aleatória.
+                    </div>
+                </div>
+
+                <!-- Seção de Ações -->
+                <div class="action-section">
+                    <h3><i class="fas fa-play"></i> Ações</h3>
+                    <div class="button-group">
+                        <button class="btn" onclick="gerarNumeros()">
+                            <i class="fas fa-dice"></i> Gerar Sequência
+                        </button>
+                        <button class="btn btn-secondary" onclick="copiarNumeros()">
+                            <i class="fas fa-copy"></i> Copiar Resultado
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Seção de Resultado -->
+                <div class="result-section">
+                    <h3><i class="fas fa-code"></i> Resultado Gerado</h3>
+                    <div id="numerosGerados" class="result-display empty">
+                        Clique em "Gerar Sequência" para criar uma nova sequência aleatória
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Aleksandro Alves da Rocha Junior. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="index.html">Início</a>
+                    <a href="about.html">Sobre</a>
+                    <a href="contact.html">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+        function gerarNumeros() {
+            const quantidade = parseInt(document.getElementById('quantidadeCaracteres').value);
+            
+            // Validação da quantidade
+            if (!quantidade || quantidade < 1 || quantidade > 100) {
+                alert('Por favor, insira uma quantidade válida entre 1 e 100.');
+                return;
+            }
+            
+            let caracteres = '';
+            
+            // Construir conjunto de caracteres baseado nas seleções
+            if (document.getElementById('checkboxNumeros').checked) {
+                caracteres += '0123456789';
+            }
+            if (document.getElementById('checkboxLetras').checked) {
+                caracteres += 'abcdefghijklmnopqrstuvwxyz';
+            }
+            if (document.getElementById('checkboxLetrasMaiusculas').checked) {
+                caracteres += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            }
+            if (document.getElementById('checkboxCaracteresEspeciais').checked) {
+                caracteres += '!@#$%^&*()_+=-[]{}|;:",.<>?';
+            }
+            
+            // Verificar se pelo menos um tipo foi selecionado
+            if (caracteres === '') {
+                alert('Selecione pelo menos um tipo de caractere para gerar a sequência.');
+                return;
+            }
+            
+            // Gerar sequência aleatória
+            let resultado = '';
+            for (let i = 0; i < quantidade; i++) {
+                resultado += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            
+            // Exibir resultado
+            const resultDiv = document.getElementById('numerosGerados');
+            resultDiv.textContent = resultado;
+            resultDiv.classList.remove('empty');
+            
+            // Feedback visual
+            resultDiv.style.borderColor = '#00ff00';
+            setTimeout(() => {
+                resultDiv.style.borderColor = 'rgba(0, 255, 0, 0.3)';
+            }, 1000);
+        }
+
+        function copiarNumeros() {
+            const resultDiv = document.getElementById('numerosGerados');
+            const textoParaCopiar = resultDiv.textContent;
+            
+            // Verificar se há conteúdo para copiar
+            if (!textoParaCopiar || resultDiv.classList.contains('empty')) {
+                alert('Gere uma sequência primeiro antes de copiar.');
+                return;
+            }
+            
+            // Copiar para área de transferência
+            navigator.clipboard.writeText(textoParaCopiar)
+                .then(() => {
+                    // Feedback visual de sucesso
+                    const btn = event.target.closest('button');
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+                    btn.style.background = 'linear-gradient(135deg, #00ff00, #00f5ff)';
+                    
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = 'linear-gradient(135deg, #00ff00, #00f5ff)';
+                    }, 2000);
+                    
+                    // Mostrar toast de sucesso
+                    showToast('Sequência copiada para a área de transferência!');
+                })
+                .catch(err => {
+                    console.error('Erro ao copiar: ', err);
+                    alert('Erro ao copiar para a área de transferência.');
+                });
+        }
+
+        function showToast(message) {
+            // Criar elemento de toast
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #00ff00, #00f5ff);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                font-family: 'Rajdhani', sans-serif;
+                font-weight: 600;
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+            `;
+            toast.textContent = message;
+            
+            // Adicionar animação CSS
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Adicionar ao DOM
+            document.body.appendChild(toast);
+            
+            // Remover após 3 segundos
+            setTimeout(() => {
+                toast.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                    document.head.removeChild(style);
+                }, 300);
+            }, 3000);
+        }
+
+        // Adicionar funcionalidade de Enter para gerar
+        document.getElementById('quantidadeCaracteres').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                gerarNumeros();
+            }
+        });
+
+        // Gerar automaticamente ao carregar a página
+        window.addEventListener('load', function() {
+            // Pequeno delay para garantir que tudo carregou
+            setTimeout(gerarNumeros, 500);
+        });
+    </script>
+</body>
+</html>
