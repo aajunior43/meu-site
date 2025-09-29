@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Extrator de Texto PDF - Extraia texto de arquivos PDF de forma rápida e eficiente">
+    <meta name="keywords" content="PDF, extrator, texto, ferramenta, online">
+    <meta name="author" content="Aleksandro Alves">
+    <title>PDF Extrator - Extração de Texto</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js" as="script">
+    
+    <!-- Critical CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #00ffcc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            background: rgba(34, 40, 49, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 2px solid #00adb5;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00adb5;
+            text-decoration: none;
+        }
+        
+        .back-btn {
+            background: linear-gradient(45deg, #00adb5, #00ffcc);
+            color: #222831;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 173, 181, 0.4);
+        }
+        
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .tool-container {
+            background: rgba(34, 40, 49, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #00adb5;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .tool-title {
+            text-align: center;
+            color: #00adb5;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(0, 173, 181, 0.5);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00ffcc;
+            font-weight: 600;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(57, 62, 70, 0.8);
+            border: 1px solid #00adb5;
+            border-radius: 5px;
+            color: #eeeeee;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #00ffcc;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #00adb5, #00ffcc);
+            color: #222831;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 173, 181, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .text-area {
+            width: 100%;
+            height: 200px;
+            padding: 0.75rem;
+            background: rgba(57, 62, 70, 0.8);
+            border: 1px solid #00adb5;
+            border-radius: 5px;
+            color: #eeeeee;
+            font-family: inherit;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+        
+        .text-area:focus {
+            outline: none;
+            border-color: #00ffcc;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+        }
+        
+        .page-info {
+            color: #eeeeee;
+            text-align: center;
+            margin: 1rem 0;
+            padding: 0.5rem;
+            background: rgba(57, 62, 70, 0.5);
+            border-radius: 5px;
+        }
+        
+        .btn-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .tool-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .tool-title {
+                font-size: 1.5rem;
+            }
+            
+            .btn-group {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    
+    <!-- External resources -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📄</text></svg>">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">📄 PDF Extrator</a>
+            <a href="outros.html" class="back-btn">← Voltar</a>
+        </nav>
+    </header>
+
+    <main class="main-container">
+        <div class="tool-container">
+            <h1 class="tool-title">Extrator de Texto PDF</h1>
+            
+            <div class="form-group">
+                <label for="fileInput" class="form-label">Selecionar arquivo PDF:</label>
+                <input type="file" id="fileInput" class="form-input" accept="application/pdf" />
+            </div>
+            
+            <div id="pageCount" class="page-info">Número de páginas: 0</div>
+            
+            <div class="form-group">
+                <label for="pageNumber" class="form-label">Número da página:</label>
+                <input type="number" id="pageNumber" class="form-input" value="1" min="1" />
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn" onclick="extractTextFromPage()">Extrair Página</button>
+                <button class="btn" onclick="extractAllText()">Extrair Tudo</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="textContent" class="form-label">Texto extraído:</label>
+                <textarea id="textContent" class="text-area" readonly placeholder="O texto extraído aparecerá aqui..."></textarea>
+            </div>
+            
+            <button class="btn" onclick="copyExtractedText()">📋 Copiar Texto</button>
+        </div>
+    </main>
+
+    <script>
+        let pdfDoc = null;
+
+        document.getElementById('fileInput').addEventListener('change', async function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileReader = new FileReader();
+                fileReader.onload = async function() {
+                    try {
+                        const typedArray = new Uint8Array(this.result);
+                        pdfDoc = await pdfjsLib.getDocument({data: typedArray}).promise;
+                        document.getElementById('pageCount').textContent = `Número de páginas: ${pdfDoc.numPages}`;
+                        document.getElementById('pageNumber').max = pdfDoc.numPages;
+                    } catch (error) {
+                        console.error('Error loading the PDF: ', error);
+                        alert('Erro ao carregar o PDF. Verifique se o arquivo é válido.');
+                    }
+                };
+                fileReader.readAsArrayBuffer(file);
+            }
+        });
+
+        async function extractTextFromPage() {
+            const pageNumber = parseInt(document.getElementById('pageNumber').value, 10);
+            if (pdfDoc && pageNumber >= 1 && pageNumber <= pdfDoc.numPages) {
+                try {
+                    const page = await pdfDoc.getPage(pageNumber);
+                    const textContent = await page.getTextContent();
+                    const extractedText = textContent.items.map(item => item.str).join(' ');
+                    document.getElementById('textContent').value = extractedText;
+                } catch (error) {
+                    console.error('Error extracting text: ', error);
+                    alert('Erro ao extrair texto da página.');
+                }
+            } else {
+                alert('PDF não carregado ou número de página inválido.');
+            }
+        }
+
+        async function extractAllText() {
+            if (pdfDoc) {
+                try {
+                    let fullText = '';
+                    for (let num = 1; num <= pdfDoc.numPages; num++) {
+                        const page = await pdfDoc.getPage(num);
+                        const textContent = await page.getTextContent();
+                        const pageText = textContent.items.map(item => item.str).join(' ');
+                        fullText += `--- Página ${num} ---\n${pageText}\n\n`;
+                    }
+                    document.getElementById('textContent').value = fullText;
+                } catch (error) {
+                    console.error('Error extracting all text: ', error);
+                    alert('Erro ao extrair todo o texto.');
+                }
+            } else {
+                alert('PDF não carregado.');
+            }
+        }
+
+        function copyExtractedText() {
+            const textArea = document.getElementById('textContent');
+            if (textArea.value.trim() === '') {
+                alert('Nenhum texto para copiar.');
+                return;
+            }
+            
+            textArea.select();
+            textArea.setSelectionRange(0, 99999); // Para dispositivos móveis
+            
+            try {
+                document.execCommand('copy');
+                alert('Texto copiado para a área de transferência!');
+            } catch (err) {
+                console.error('Erro ao copiar: ', err);
+                alert('Erro ao copiar texto.');
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                extractTextFromPage();
+            }
+        });
+    </script>
+</body>
+</html>
