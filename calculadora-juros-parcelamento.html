@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Juros de Parcelamento</title>
+
+    <meta name="description" content="Calcule o total, diferença e porcentagem de juros em compras parceladas.">
+    <meta name="author" content="Aleksandro Alves da Rocha Junior">
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style" crossorigin>
+    <link rel="preload" href="calculadora-juros-parcelamento.js" as="script" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="accessibility.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <a href="#main" class="skip-link">Pular para o conteúdo</a>
+
+    <!-- Fundo de Estrelas -->
+    <div class="stars-background">
+        <div class="stars-layer stars-layer-1"></div>
+        <div class="stars-layer stars-layer-2"></div>
+        <div class="stars-layer stars-layer-3"></div>
+        <div class="comet-container"></div>
+    </div>
+
+    <!-- Header e Navegação -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html" class="logo-link" aria-label="Ir para a página inicial">
+                        <h2>Aleksandro Alves</h2>
+                    </a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Início</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">Sobre</a></li>
+                    <li class="nav-item"><a href="portfolio.html" class="nav-link">Portfólio</a></li>
+                    <li class="nav-item"><a href="certificates.html" class="nav-link">Certificados</a></li>
+                    <li class="nav-item"><a href="outros.html" class="nav-link">OUTROS</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link">Contato</a></li>
+                    <li class="nav-item"><a href="linktree.html" class="nav-link">Links</a></li>
+                </ul>
+                <button id="themeToggle" class="theme-toggle" aria-pressed="false" aria-label="Alternar tema">
+                    <i class="fas fa-moon toggle-icon" aria-hidden="true"></i>
+                    <span class="sr-only">Alternar tema claro/escuro</span>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sistema de Partículas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Conteúdo Principal -->
+    <main id="main" class="main-content">
+        <div class="container">
+            <section class="auth-header" style="text-align:center;margin-bottom:1rem;">
+                <h1><i class="fas fa-percent"></i> Calculadora de Juros de Parcelamento</h1>
+                <p>Informe os valores para calcular o total, a diferença e a porcentagem de juros.</p>
+            </section>
+
+            <div class="projects-grid" style="grid-template-columns: 1fr;">
+                <div class="project-card">
+                    <div class="project-icon"><i class="fas fa-calculator"></i></div>
+                    <h3 class="project-title">Preencha os campos</h3>
+                    <p class="project-description">Use valores reais e clique em Calcular para ver o relatório.</p>
+
+                    <div class="busca-container">
+                        <div class="busca-row">
+                            <label for="valorAvista" class="sr-only">Valor à Vista</label>
+                            <input type="number" id="valorAvista" step="0.01" min="0" placeholder="Valor à Vista (R$)">
+                        </div>
+                        <div class="busca-row">
+                            <label for="parcelas" class="sr-only">Número de Parcelas</label>
+                            <input type="number" id="parcelas" min="1" placeholder="Número de Parcelas">
+                        </div>
+                        <div class="busca-row">
+                            <label for="valorParcela" class="sr-only">Valor da Parcela</label>
+                            <input type="number" id="valorParcela" step="0.01" min="0" placeholder="Valor da Parcela (R$)">
+                        </div>
+                        <div class="busca-row">
+                            <button id="btnCalcular" class="project-link" type="button"><i class="fas fa-equals"></i> Calcular</button>
+                        </div>
+                    </div>
+
+                    <div id="resultado" class="project-description" aria-live="polite"></div>
+
+                    <p class="project-description" style="margin-top:1rem;">
+                        Código original: <a href="https://github.com/aajunior43/calculadora-de-juros-de-parcelamento" target="_blank" rel="noopener noreferrer">aajunior43/calculadora-de-juros-de-parcelamento</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Aleksandro Alves da Rocha Junior. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="index.html">Início</a>
+                    <a href="about.html">Sobre</a>
+                    <a href="contact.html">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="performance.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="calculadora-juros-parcelamento.js" defer></script>
+</body>
+</html>
