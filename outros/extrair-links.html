@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <base href="../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Extrair Links de Grupos - Aleksandro Alves</title>
@@ -11,15 +12,15 @@
     <meta name="author" content="Aleksandro Alves da Rocha Junior">
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="styles.css" as="style" crossorigin>
-    <link rel="preload" href="script.js" as="script" crossorigin>
+    <link rel="preload" href="assets/css/styles.css" as="style" crossorigin>
+    <link rel="preload" href="assets/js/script.js" as="script" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <!-- Critical CSS -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="accessibility.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/accessibility.css">
 
     <!-- External resources -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -414,7 +415,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
     <script>
         function extractLinks() {
             var text = document.getElementById('input-text').value;

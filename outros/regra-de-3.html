@@ -1,79 +1,121 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <base href="../">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contador de Caracteres</title>
+    <title>Calculadora de Regra de Três - Aleksandro Alves Da Rocha Junior</title>
     
     <!-- CSS do site original para navegação -->
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="accessibility.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/accessibility.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Estilos originais do contador -->
+    <!-- Estilos originais da calculadora -->
     <style>
-        /* Mantendo os estilos originais do contador */
-        .contador-content {
+        /* Mantendo os estilos originais da calculadora */
+        .regra-content {
             font-family: Arial, sans-serif;
+            padding: 50px 20px;
             background-color: #141414;
             color: white;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 50px 20px;
-            min-height: 80vh;
             justify-content: center;
         }
         
-        .contador-content h2 {
-            margin-bottom: 30px;
+        .regra-content h1 {
+            color: #E50914;
+            margin-bottom: 20px;
             font-size: 2rem;
         }
         
-        #input {
+        .regra-content p {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .calculator {
             background-color: #333;
-            color: white;
-            border: none;
-            padding: 40px;
-            border-radius: 8px;
-            font-size: 16px;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            margin: auto;
+            box-shadow: 0px 0px 20px rgba(229, 9, 20, 0.3);
+        }
+        
+        .calculator input {
             width: 100%;
-            max-width: 500px;
-            min-height: 200px;
-            resize: vertical;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: #222;
+            color: white;
+            box-sizing: border-box;
         }
         
-        #input:focus {
+        .calculator input:focus {
             outline: 2px solid #E50914;
+            border-color: #E50914;
         }
         
-        #output {
-            margin-top: 20px;
+        .calculator button {
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: none;
+            background-color: #E50914;
+            color: #fff;
             font-weight: bold;
-            color: #E50914; /* cor vermelha da Netflix */
-            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         
-        /* Ajustes para responsividade */
+        .calculator button:hover {
+            background-color: #b8070f;
+        }
+        
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #E50914;
+            text-align: center;
+        }
+        
+        .footer-calc {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsividade */
         @media (max-width: 768px) {
-            #input {
-                padding: 20px;
-                font-size: 14px;
+            .calculator {
+                width: 90%;
+                max-width: 300px;
             }
             
-            .contador-content h2 {
+            .regra-content h1 {
                 font-size: 1.5rem;
             }
             
-            #output {
-                font-size: 1.2rem;
+            .regra-content p {
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
-    <a href="#contador" class="skip-link">Pular para o conteúdo</a>
+    <a href="#regra-de-3" class="skip-link">Pular para o conteúdo</a>
     
     <!-- Fundo de Estrelas -->
     <div class="stars-background">
@@ -131,11 +173,20 @@
     <!-- Sistema de Partículas -->
     <div class="particles" id="particles"></div>
 
-    <!-- Conteúdo original do contador -->
-    <main id="contador" class="contador-content">
-        <h2>Contador de Caracteres</h2>
-        <textarea id="input" rows="5" cols="30" placeholder="Digite seu texto aqui..."></textarea>
-        <div id="output">0 caracteres</div>
+    <!-- Conteúdo original da calculadora -->
+    <main id="regra-de-3" class="regra-content">
+        <h1>Calculadora de Regra de Três</h1>
+        <p>Para usar esta calculadora, preencha os três primeiros campos com os valores conhecidos da sua proporção. Por exemplo, se você sabe que 2 está para 4, assim como 3 está para X, você preencheria os campos com 2, 4 e 3. Depois, pressione 'Calcular' para obter o resultado.</p>
+        <div class="calculator">
+            <input id="input1" type="number" placeholder="Valor 1">
+            <input id="input2" type="number" placeholder="Valor 2">
+            <input id="input3" type="number" placeholder="Valor 3">
+            <button onclick="calculate()">Calcular</button>
+            <div class="result" id="result"></div>
+        </div>
+        <div class="footer-calc">
+            Criado por Aleksandro Alves Da Rocha Junior
+        </div>
     </main>
 
     <!-- Footer -->
@@ -153,17 +204,22 @@
     </footer>
 
     <!-- Scripts do site -->
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
     
-    <!-- Script original do contador -->
+    <!-- Script original da calculadora -->
     <script>
-        const input = document.querySelector('#input');
-        const output = document.querySelector('#output');
+        function calculate() {
+            var input1 = document.getElementById('input1').value;
+            var input2 = document.getElementById('input2').value;
+            var input3 = document.getElementById('input3').value;
 
-        input.addEventListener('input', () => {
-            const count = input.value.length;
-            output.textContent = count + ' caracteres';
-        });
+            if(input1 && input2 && input3) {
+                var result = (input2 * input3) / input1;
+                document.getElementById('result').innerText = "Resultado: " + result;
+            } else {
+                document.getElementById('result').innerText = "Por favor, preencha todos os campos.";
+            }
+        }
     </script>
 </body>
 </html>
