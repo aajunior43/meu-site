@@ -885,6 +885,1157 @@ body.theme-transition *:after {
     animation: ironManRedGlow 2.5s ease-in-out infinite alternate;
 }
 
+/* ===== IRON MAN STYLES FOR ABOUT PAGE ===== */
+.iron-man-header {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-title {
+    color: var(--iron-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    font-family: 'Orbitron', monospace;
+    animation: ironManGlow 3s ease-in-out infinite alternate;
+}
+
+.iron-man-subtitle {
+    color: var(--iron-red);
+    text-shadow: 0 0 8px rgba(229, 62, 62, 0.5);
+}
+
+.iron-man-section {
+    background: linear-gradient(135deg, rgba(13, 13, 13, 0.95), rgba(26, 26, 26, 0.9));
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.iron-man-section-title {
+    color: var(--iron-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+    font-family: 'Orbitron', monospace;
+}
+
+.iron-man-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.iron-man-stat {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-md);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.iron-man-stat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.iron-man-stat:hover::before {
+    left: 100%;
+}
+
+.iron-man-stat:hover {
+    transform: translateY(-5px);
+    border-color: var(--iron-gold);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-stat .stat-number {
+    color: var(--iron-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    font-family: 'Orbitron', monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    animation: ironManGlow 2s ease-in-out infinite alternate;
+}
+
+.iron-man-stat .stat-label {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.4);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ===== IRON MAN SKILLS SECTION ===== */
+.iron-man-section .skill-category {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iron-man-section .skill-category:hover {
+    border-color: var(--iron-gold);
+    box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    transform: translateY(-8px) scale(1.02);
+}
+
+.iron-man-section .skill-category h3 {
+    color: var(--iron-gold);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    font-family: 'Orbitron', monospace;
+}
+
+.iron-man-section .skill-name {
+    color: var(--iron-red);
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.3);
+}
+
+.iron-man-section .skill-bar {
+    background: rgba(13, 13, 13, 0.8);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .skill-progress {
+    background: linear-gradient(90deg, var(--iron-red), var(--iron-gold));
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    position: relative;
+}
+
+.iron-man-section .skill-progress::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: energyFlow 2s linear infinite;
+}
+
+/* ===== IRON MAN TIMELINE SECTION ===== */
+.iron-man-section .timeline::before {
+    background: linear-gradient(to bottom, var(--iron-red), var(--iron-gold));
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.iron-man-section .timeline-dot {
+    background: var(--iron-gold);
+    border: 3px solid var(--iron-red);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    animation: ironManGlow 2s ease-in-out infinite alternate;
+}
+
+.iron-man-section .timeline-content {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iron-man-section .timeline-content:hover {
+    border-color: var(--iron-gold);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.iron-man-section .timeline-content h3 {
+    color: var(--iron-gold);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    font-family: 'Orbitron', monospace;
+}
+
+.iron-man-section .timeline-content h4 {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.4);
+}
+
+.iron-man-section .timeline-date {
+    color: var(--iron-gold);
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+@keyframes energyFlow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ===== IRON MAN PORTFOLIO SECTION ===== */
+.iron-man-section .portfolio-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.iron-man-section .filter-btn {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    color: var(--iron-gold);
+    padding: 12px 24px;
+    border-radius: var(--radius-pill);
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.iron-man-section .filter-btn:hover,
+.iron-man-section .filter-btn.active {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    border-color: var(--iron-gold);
+    color: #000;
+    text-shadow: none;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+.iron-man-section .portfolio-item {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.iron-man-section .portfolio-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.iron-man-section .portfolio-item:hover::before {
+    opacity: 1;
+}
+
+.iron-man-section .portfolio-item:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--iron-gold);
+    box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .project-placeholder {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.2), rgba(255, 215, 0, 0.2));
+    color: var(--iron-gold);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .project-placeholder i {
+    color: var(--iron-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    animation: ironManGlow 2s ease-in-out infinite alternate;
+}
+
+.iron-man-section .portfolio-overlay h3 {
+    color: var(--iron-gold);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    font-family: 'Orbitron', monospace;
+}
+
+.iron-man-section .portfolio-overlay p {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.3);
+}
+
+.iron-man-section .tech-tag {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    color: #000;
+    border: none;
+    text-shadow: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .portfolio-link {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.2), rgba(255, 215, 0, 0.2));
+    border: 2px solid var(--iron-gold);
+    color: var(--iron-gold);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iron-man-section .portfolio-link:hover {
+    background: var(--iron-gold);
+    color: #000;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    transform: scale(1.1);
+}
+
+/* ===== IRON MAN CTA SECTION ===== */
+.iron-man-section.cta-section .cta-content {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.iron-man-section.cta-section .cta-content::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    animation: energySwirl 4s linear infinite;
+}
+
+.iron-man-section.cta-section p {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.4);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+@keyframes energySwirl {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== IRON MAN CONTACT SECTION ===== */
+.iron-man-section .contact-card {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.iron-man-section .contact-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.iron-man-section .contact-card:hover::before {
+    left: 100%;
+}
+
+.iron-man-section .contact-card:hover {
+    border-color: var(--iron-gold);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.iron-man-section .contact-icon {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    color: #000;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.iron-man-section .contact-details h4 {
+    color: var(--iron-gold);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    font-family: 'Orbitron', monospace;
+}
+
+.iron-man-section .contact-link {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.3);
+    transition: all 0.3s ease;
+}
+
+.iron-man-section .contact-link:hover {
+    color: var(--iron-gold);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.iron-man-section .whatsapp-link {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid var(--iron-gold);
+    color: var(--iron-gold) !important;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iron-man-section .whatsapp-link:hover {
+    background: var(--iron-gold);
+    color: #000 !important;
+    text-shadow: none;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* ===== IRON MAN FORM STYLES ===== */
+.iron-man-section .contact-form-container {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: var(--radius-lg);
+}
+
+.iron-man-section .form-group input,
+.iron-man-section .form-group textarea,
+.iron-man-section .form-group select {
+    background: rgba(13, 13, 13, 0.8);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    color: var(--iron-gold);
+    transition: all 0.3s ease;
+}
+
+.iron-man-section .form-group input:focus,
+.iron-man-section .form-group textarea:focus,
+.iron-man-section .form-group select:focus {
+    border-color: var(--iron-gold);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    background: rgba(26, 26, 26, 0.9);
+}
+
+.iron-man-section .form-group label {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.3);
+    font-family: 'Orbitron', monospace;
+}
+
+.iron-man-section .btn-primary {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    border: 2px solid var(--iron-gold);
+    color: #000;
+    text-shadow: none;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.iron-man-section .btn-primary:hover {
+    box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* ===== IRON MAN INFO CARDS ===== */
+.iron-man-section .info-card {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iron-man-section .info-card:hover {
+    border-color: var(--iron-gold);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.iron-man-section .info-icon {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    color: #000;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.iron-man-section .info-card h4 {
+    color: var(--iron-gold);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    font-family: 'Orbitron', monospace;
+}
+
+/* ===== IRON MAN MAP SECTION ===== */
+.iron-man-section .map-container {
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+}
+
+.iron-man-section .map-info-card {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.9), rgba(255, 215, 0, 0.9));
+    border: 2px solid var(--iron-gold);
+    color: #000;
+}
+
+.iron-man-section .location-pin {
+    background: var(--iron-red);
+    color: var(--iron-gold);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.iron-man-section .btn-map,
+.iron-man-section .btn-whatsapp-map {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid var(--iron-gold);
+    color: var(--iron-gold);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iron-man-section .btn-map:hover,
+.iron-man-section .btn-whatsapp-map:hover {
+    background: var(--iron-gold);
+    color: #000;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    transform: translateY(-3px);
+}
+
+/* ===== IRON MAN CERTIFICATES SECTION ===== */
+.iron-man-section .certificate-card {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: var(--radius-lg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.iron-man-section .certificate-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.6s;
+    z-index: 1;
+}
+
+.iron-man-section .certificate-card:hover::before {
+    left: 100%;
+}
+
+.iron-man-section .certificate-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--iron-gold);
+    box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .certificate-placeholder {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.2), rgba(255, 215, 0, 0.2));
+    color: var(--iron-gold);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .certificate-placeholder i {
+    color: var(--iron-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    animation: ironManGlow 2s ease-in-out infinite alternate;
+}
+
+.iron-man-section .certificate-badge {
+    background: var(--iron-gold);
+    color: #000;
+    border: 2px solid var(--iron-red);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+}
+
+.iron-man-section .certificate-badge.verified {
+    background: var(--iron-red);
+    color: var(--iron-gold);
+    border-color: var(--iron-gold);
+    animation: ironManRedGlow 2s ease-in-out infinite alternate;
+}
+
+.iron-man-section .certificate-title {
+    color: var(--iron-gold);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    font-family: 'Orbitron', monospace;
+}
+
+.iron-man-section .certificate-issuer,
+.iron-man-section .certificate-date {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.3);
+}
+
+.iron-man-section .skill-tag {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    color: #000;
+    border: none;
+    text-shadow: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .btn-view,
+.iron-man-section .btn-download {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid var(--iron-gold);
+    color: var(--iron-gold);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iron-man-section .btn-view:hover,
+.iron-man-section .btn-download:hover {
+    background: var(--iron-gold);
+    color: #000;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* ===== IRON MAN FILTER BUTTONS ===== */
+.iron-man-section .filter-btn {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    color: var(--iron-gold);
+    border-radius: var(--radius-pill);
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iron-man-section .filter-btn:hover,
+.iron-man-section .filter-btn.active {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    border-color: var(--iron-gold);
+    color: #000;
+    text-shadow: none;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+.iron-man-section .filter-btn i {
+    margin-right: 8px;
+}
+
+/* ===== IRON MAN BREADCRUMBS ===== */
+.breadcrumbs {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+}
+
+.breadcrumb-list {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    padding: 1rem 0;
+}
+
+.breadcrumb-list li a {
+    color: var(--iron-gold);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.breadcrumb-list li a:hover {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.3);
+}
+
+.breadcrumb-list li.current {
+    color: var(--iron-red);
+    font-weight: 600;
+}
+
+/* ===== IRON MAN ADD MORE SECTION ===== */
+.iron-man-section .add-more-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-lg);
+    margin-top: 4rem;
+}
+
+.iron-man-section .add-more-section p {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.4);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* ===== IRON MAN LINKTREE SECTION ===== */
+.iron-man-section.linktree-main {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    min-height: 100vh;
+    padding: 2rem 0;
+}
+
+.iron-man-section .linktree-profile {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.iron-man-section .profile-avatar {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem;
+}
+
+.iron-man-section .avatar-ring {
+    position: absolute;
+    inset: -10px;
+    border: 3px solid var(--iron-gold);
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--iron-red), var(--iron-gold));
+    padding: 3px;
+    animation: ironManGlow 3s ease-in-out infinite alternate;
+}
+
+.iron-man-section .avatar-img {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold)) !important;
+    color: #000 !important;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    font-family: 'Orbitron', monospace !important;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+}
+
+.iron-man-section .profile-name {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.iron-man-section .links-category {
+    margin-bottom: 3rem;
+}
+
+.iron-man-section .category-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.iron-man-section .category-title i {
+    color: var(--iron-gold);
+    margin-right: 0.5rem;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+.iron-man-section .links-grid {
+    display: grid;
+    gap: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.iron-man-section .link-card {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.iron-man-section .link-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.iron-man-section .link-card:hover::before {
+    left: 100%;
+}
+
+.iron-man-section .link-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--iron-gold);
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+}
+
+.iron-man-section .link-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    flex-shrink: 0;
+}
+
+.iron-man-section .link-content {
+    flex: 1;
+}
+
+.iron-man-section .link-title {
+    color: var(--iron-gold);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.iron-man-section .link-description {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.3);
+    font-size: 0.9rem;
+}
+
+.iron-man-section .link-arrow {
+    color: var(--iron-gold);
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.iron-man-section .link-card:hover .link-arrow {
+    transform: translateX(5px);
+}
+
+/* ===== IRON MAN QUICK ACTIONS ===== */
+.iron-man-section .quick-actions {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.iron-man-section .action-btn {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    border: 2px solid var(--iron-gold);
+    color: #000;
+    padding: 12px 24px;
+    border-radius: var(--radius-pill);
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.iron-man-section .action-btn:hover {
+    box-shadow: 0 12px 35px rgba(255, 215, 0, 0.6);
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* ===== IRON MAN SOCIAL LINKS VARIATIONS ===== */
+.iron-man-section .link-card.github .link-icon {
+    background: linear-gradient(135deg, #333, var(--iron-gold));
+}
+
+.iron-man-section .link-card.linkedin .link-icon {
+    background: linear-gradient(135deg, #0077b5, var(--iron-gold));
+}
+
+.iron-man-section .link-card.twitter .link-icon {
+    background: linear-gradient(135deg, #1da1f2, var(--iron-gold));
+}
+
+.iron-man-section .link-card.instagram .link-icon {
+    background: linear-gradient(135deg, #e4405f, var(--iron-gold));
+}
+
+.iron-man-section .link-card.featured .link-icon {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    animation: ironManGlow 2s ease-in-out infinite alternate;
+}
+
+.iron-man-section .link-card.professional .link-icon {
+    background: linear-gradient(135deg, var(--iron-gold), var(--iron-red));
+}
+
+/* ===== IRON MAN BLOG SECTION ===== */
+.iron-man-section .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.iron-man-section .blog-post {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.05), rgba(255, 215, 0, 0.05));
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.iron-man-section .blog-post::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    transition: left 0.6s;
+    z-index: 1;
+}
+
+.iron-man-section .blog-post:hover::before {
+    left: 100%;
+}
+
+.iron-man-section .blog-post:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--iron-gold);
+    box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .blog-post.featured {
+    grid-column: span 2;
+    border-color: var(--iron-gold);
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+}
+
+.iron-man-section .post-placeholder {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.2), rgba(255, 215, 0, 0.2));
+    color: var(--iron-gold);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.iron-man-section .post-placeholder i {
+    color: var(--iron-gold);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    animation: ironManGlow 2s ease-in-out infinite alternate;
+}
+
+.iron-man-section .post-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+    z-index: 2;
+}
+
+.iron-man-section .post-content {
+    padding: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.iron-man-section .post-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.iron-man-section .post-date,
+.iron-man-section .post-read-time {
+    color: var(--iron-red);
+    text-shadow: 0 0 5px rgba(229, 62, 62, 0.3);
+    font-size: 0.9rem;
+}
+
+.iron-man-section .post-category {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(229, 62, 62, 0.2));
+    color: var(--iron-gold);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .post-title {
+    margin-bottom: 1rem;
+}
+
+.iron-man-section .post-title a {
+    color: var(--iron-gold);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+    font-family: 'Orbitron', monospace;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.iron-man-section .post-title a:hover {
+    color: var(--iron-red);
+    text-shadow: 0 0 10px rgba(229, 62, 62, 0.6);
+}
+
+.iron-man-section .post-excerpt {
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.iron-man-section .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.iron-man-section .tag {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    color: #000;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .read-more-btn {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid var(--iron-gold);
+    color: var(--iron-gold);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.iron-man-section .read-more-btn:hover {
+    background: var(--iron-gold);
+    color: #000;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+/* ===== IRON MAN PAGINATION ===== */
+.iron-man-section .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.iron-man-section .pagination-btn {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    color: var(--iron-gold);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+}
+
+.iron-man-section .pagination-btn:hover:not(:disabled) {
+    background: var(--iron-gold);
+    color: #000;
+    border-color: var(--iron-gold);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.iron-man-section .pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.iron-man-section .page-number {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--iron-gold);
+    border: 2px solid transparent;
+}
+
+.iron-man-section .page-number.active,
+.iron-man-section .page-number:hover {
+    background: var(--iron-gold);
+    color: #000;
+    border-color: var(--iron-gold);
+}
+
+/* ===== IRON MAN NEWSLETTER ===== */
+.iron-man-section.newsletter {
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(255, 215, 0, 0.1));
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-lg);
+    margin: 4rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.iron-man-section.newsletter::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    animation: energySwirl 6s linear infinite;
+}
+
+.iron-man-section .newsletter-content {
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.iron-man-section .newsletter-form {
+    display: flex;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 2rem auto 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.iron-man-section .newsletter-form input {
+    flex: 1;
+    min-width: 250px;
+    padding: 1rem 1.5rem;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: var(--radius-md);
+    background: rgba(13, 13, 13, 0.8);
+    color: var(--iron-gold);
+    font-size: 1rem;
+}
+
+.iron-man-section .newsletter-form input:focus {
+    outline: none;
+    border-color: var(--iron-gold);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.iron-man-section .newsletter-form .btn {
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    border: 2px solid var(--iron-gold);
+    color: #000;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+}
 
 .highlight {
     background: linear-gradient(45deg, #ffd700, #ffed4e);
