@@ -188,7 +188,7 @@ body.theme-transition *:after {
     background: transparent;
     border: 1px solid transparent;
     overflow: hidden;
-    will-change: background-color, color, box-shadow, border-color, transform;
+    will-change: background-color, color, box-shadow, border-color;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -380,7 +380,7 @@ body.theme-transition *:after {
     font-size: 1rem;
     border-radius: var(--radius-md);
     border: 1px solid transparent;
-    transition: transform var(--transition-duration) var(--transition-easing), box-shadow var(--transition-duration) var(--transition-easing), background var(--transition-duration) var(--transition-easing), border-color var(--transition-duration) var(--transition-easing);
+    transition: box-shadow var(--transition-duration) var(--transition-easing), background var(--transition-duration) var(--transition-easing), border-color var(--transition-duration) var(--transition-easing);
     cursor: pointer;
     text-decoration: none;
 }
@@ -477,12 +477,11 @@ body.theme-transition *:after {
     border-radius: 14px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    transition: transform var(--transition-duration) var(--transition-easing), border-color var(--transition-duration) var(--transition-easing), background var(--transition-duration) var(--transition-easing);
+    transition: border-color var(--transition-duration) var(--transition-easing), background var(--transition-duration) var(--transition-easing);
 }
 
 .hero-social .social-link:hover,
 .hero-social .social-link:focus-visible {
-    transform: translateY(-3px) scale(1.02);
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.3);
 }
@@ -562,13 +561,12 @@ body.theme-transition *:after {
     color: #0f172a;
     font-weight: 600;
     box-shadow: 0 18px 40px rgba(99, 102, 241, 0.35);
-    transition: transform var(--transition-duration) var(--transition-easing), box-shadow var(--transition-duration) var(--transition-easing);
+    transition: box-shadow var(--transition-duration) var(--transition-easing);
     z-index: 999;
 }
 
 .floating-cta:hover,
 .floating-cta:focus-visible {
-    transform: translateY(-3px);
     box-shadow: 0 22px 48px rgba(99, 102, 241, 0.45);
 }
 
@@ -721,7 +719,6 @@ body.theme-transition *:after {
 }
 
 .stat-item:hover {
-    transform: translateY(-5px);
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.2);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
@@ -887,12 +884,10 @@ section::before {
     background: white;
     border-radius: 15px;
     box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
+
 }
 
-.stat:hover {
-    transform: translateY(-5px);
-}
+
 
 .stat h3 {
     font-size: 2.5rem;
@@ -1038,12 +1033,10 @@ section::before {
     padding: 2rem;
     border-radius: 15px;
     box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
+
 }
 
-.timeline-content:hover {
-    transform: translateY(-5px);
-}
+
 
 .timeline-content h3 {
     font-size: 1.3rem;
@@ -1110,7 +1103,6 @@ section::before {
 }
 
 .portfolio-item:hover {
-    transform: translateY(-10px);
     box-shadow: var(--shadow-hover);
 }
 
@@ -1176,12 +1168,10 @@ section::before {
     justify-content: center;
     border-radius: 50%;
     text-decoration: none;
-    transition: transform 0.3s ease;
+
 }
 
-.portfolio-link:hover {
-    transform: scale(1.1);
-}
+
 
 /* Seção Contato */
 .contact {
@@ -2582,23 +2572,7 @@ img[loading="lazy"].loaded {
     transform: translate(-50%, -50%);
 }
 
-/* Contador de caracteres */
-.character-counter {
-    position: absolute;
-    bottom: -25px;
-    right: 0;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-family: 'Rajdhani', sans-serif;
-}
 
-.character-counter.warning {
-    color: #f59e0b;
-}
-
-.character-counter.danger {
-    color: #ef4444;
-}
 
 /* Área de submit melhorada */
 .form-submit-area {
@@ -4233,9 +4207,7 @@ img[loading="lazy"].loaded {
         font-size: 0.9rem;
     }
 
-    .certificate-item:hover {
-        transform: translateY(-10px) scale(1.02);
-    }
+
 
     /* Reduzir efeitos 3D em tablets */
     .cert-modal-content {
@@ -4335,14 +4307,9 @@ img[loading="lazy"].loaded {
         transform: none;
     }
 
-    .certificate-item:hover {
-        transform: translateY(-5px) scale(1.01);
-    }
+
 
     /* Simplificar micro-interações em mobile */
-    .cursor-trail {
-        display: none;
-    }
 
     .floating-particle {
         display: none;
@@ -4460,7 +4427,6 @@ img[loading="lazy"].loaded {
     }
 
     .certificate-item:hover {
-        transform: translateY(-8px) rotateX(8deg) rotateY(3deg) scale(1.02);
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
         border: 1px solid rgba(0, 212, 255, 0.4);
         box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3),
@@ -4552,7 +4518,6 @@ img[loading="lazy"].loaded {
 
     /* Ajustes de performance mobile */
     .floating-particle.mobile-optimized {
-        will-change: transform;
         animation-duration: 3s;
     }
 
@@ -4741,18 +4706,15 @@ body {
 
 /* Otimização de performance para animações */
 .hero {
-    will-change: transform;
 }
 
 .btn, .social-link, .nav-link {
-    will-change: transform;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                background-color 0.3s ease,
+    transition: background-color 0.3s ease,
                 box-shadow 0.3s ease;
 }
 
 .particle {
-    will-change: transform, opacity;
+    will-change: opacity;
 }
 
 /* Foco acessível para todos os elementos interativos */
@@ -4826,8 +4788,7 @@ html {
         animation: none !important;
     }
 
-    .floating-particle,
-    .cursor-trail {
+    .floating-particle {
         display: none !important;
     }
 }

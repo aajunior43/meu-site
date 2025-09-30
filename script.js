@@ -313,7 +313,7 @@ document.addEventListener('DOMContentLoaded', function() {
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             z-index: 10000;
             transform: translateX(100%);
-            transition: transform 0.3s ease;
+
             max-width: 400px;
         `;
         
@@ -404,32 +404,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ===== CONTADOR ANIMADO PARA ESTATÍSTICAS =====
-    const stats = document.querySelectorAll('.stat h3');
-    
-    function animateCounters() {
-        stats.forEach(stat => {
-            const rect = stat.getBoundingClientRect();
-            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-            
-            if (isVisible && !stat.classList.contains('counted')) {
-                const target = parseInt(stat.textContent);
-                const increment = target / 50;
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '') + (stat.textContent.includes('%') ? '%' : '');
-                }, 40);
-                
-                stat.classList.add('counted');
-            }
-        });
-    }
+
 
     // ===== SMOOTH SCROLL PARA LINKS INTERNOS =====
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -451,7 +426,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function updateOnScroll() {
         animateSkillBars();
-        animateCounters();
         parallaxEffect();
         ticking = false;
     }
@@ -475,7 +449,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Inicia animações iniciais
         setTimeout(() => {
             animateSkillBars();
-            animateCounters();
         }, 500);
     });
 
@@ -530,7 +503,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== INICIALIZAÇÃO DE EFEITOS INTERATIVOS =====
     createParticles();
-    // createFuturisticCursor(); // Removido para melhor performance
+
     addRippleEffect();
 
     // Inicia efeito typing com delay
@@ -676,32 +649,7 @@ function initContactFormValidation() {
     const progressBar = document.querySelector('.form-progress-bar');
     const progressFill = document.querySelector('.progress-fill');
 
-    // Contador de caracteres para mensagem
-    const messageField = fields.message;
-    const charCounter = document.querySelector('.character-counter');
-    const currentChars = document.querySelector('.current-chars');
-    const maxChars = 500;
 
-    if (messageField && charCounter) {
-        messageField.addEventListener('input', function() {
-            const length = this.value.length;
-            currentChars.textContent = length;
-
-            charCounter.classList.remove('warning', 'danger');
-            if (length > maxChars * 0.8) {
-                charCounter.classList.add('warning');
-            }
-            if (length > maxChars * 0.95) {
-                charCounter.classList.add('danger');
-            }
-
-            // Limita caracteres
-            if (length > maxChars) {
-                this.value = this.value.substring(0, maxChars);
-                currentChars.textContent = maxChars;
-            }
-        });
-    }
 
     // Validação em tempo real
     Object.keys(fields).forEach(fieldName => {
@@ -1309,12 +1257,11 @@ function addMicroInteractions() {
         const certificateCards = document.querySelectorAll('.certificate-card');
         certificateCards.forEach(card => {
             card.addEventListener('touchstart', function() {
-                this.style.transform = 'scale(0.98)';
-                this.style.transition = 'transform 0.2s ease';
+                // Removed transform effects for mobile
             });
 
             card.addEventListener('touchend', function() {
-                this.style.transform = 'scale(1)';
+                // Removed transform effects for mobile
             });
         });
 
