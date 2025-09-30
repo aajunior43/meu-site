@@ -5,6 +5,12 @@
     box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -18,6 +24,7 @@ body {
     font-smooth: always;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.6s ease, color 0.6s ease;
 }
 .container {
     max-width: 1200px;
@@ -25,30 +32,45 @@ body {
     padding: 0 20px;
 }
 
-/* Variáveis CSS para Tema Escuro (padrão) */
+/* Variáveis CSS - Tema Homem de Ferro Clássico */
 :root {
-    --color-bg-900: #050505;
-    --color-bg-800: #08080d;
-    --color-surface-900: #111117;
-    --color-surface-800: #161620;
-    --color-primary: #ffffff;
-    --color-secondary: #d1d5f9;
-    --color-accent: #facc15;
-    --color-accent-soft: rgba(250, 204, 21, 0.12);
+    /* Cores de fundo - Tons escuros sofisticados */
+    --color-bg-900: #0d0d0d;
+    --color-bg-800: #1a1a1a;
+    --color-surface-900: #1f1f23;
+    --color-surface-800: #2a2a2e;
+
+    /* Cores do Homem de Ferro - Vermelho e Dourado */
+    --iron-red: #e53e3e;
+    --iron-gold: #ffd700;
+    --iron-red-dark: #c53030;
+    --iron-gold-dark: #eab308;
+
+    /* Cores principais */
+    --color-primary: #f5f5f5;
+    --color-secondary: #e8e8e8;
+    --color-accent: var(--iron-gold);
+    --color-accent-soft: rgba(251, 191, 36, 0.15);
+
+    /* Aplicação das cores */
     --primary-color: var(--color-primary);
     --secondary-color: var(--color-secondary);
     --accent-color: var(--color-accent);
     --text-dark: var(--color-primary);
-    --text-light: rgba(226, 232, 240, 0.7);
+    --text-light: rgba(245, 245, 245, 0.8);
     --bg-light: var(--color-bg-900);
     --bg-white: var(--color-surface-900);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --shadow: 0 10px 30px rgba(5, 5, 10, 0.45);
-    --shadow-hover: 0 20px 45px rgba(5, 5, 12, 0.6);
-    --shadow-soft: 0 18px 38px rgba(15, 15, 25, 0.45);
-    --shadow-pop: 0 16px 30px rgba(250, 204, 21, 0.35);
-    --gradient: linear-gradient(135deg, rgba(34, 211, 238, 0.24), rgba(99, 102, 241, 0.2));
-    --gradient-accent: linear-gradient(135deg, #22d3ee, #6366f1);
+    --border-color: rgba(255, 215, 0, 0.3);
+
+    /* Sombras com cores do Homem de Ferro */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    --shadow-hover: 0 20px 45px rgba(0, 0, 0, 0.8);
+    --shadow-soft: 0 18px 38px rgba(255, 215, 0, 0.2);
+    --shadow-pop: 0 16px 30px rgba(229, 62, 62, 0.4);
+
+    /* Gradientes Homem de Ferro */
+    --gradient: linear-gradient(135deg, rgba(229, 62, 62, 0.2), rgba(255, 215, 0, 0.2));
+    --gradient-accent: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
     --radius-sm: 12px;
     --radius-md: 16px;
     --radius-lg: 24px;
@@ -78,16 +100,16 @@ body.theme-transition *:after {
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(26, 26, 26, 0.85);
     backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
     -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.1);
     z-index: 1000;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.4),
-        0 1px 0 rgba(255, 255, 255, 0.05) inset,
-        0 -1px 0 rgba(255, 255, 255, 0.02) inset;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.6),
+        0 1px 0 rgba(255, 215, 0, 0.1) inset,
+        0 -1px 0 rgba(255, 215, 0, 0.05) inset;
     transform: translateZ(0);
     will-change: background, box-shadow, border-color;
 }
@@ -106,9 +128,10 @@ body.theme-transition *:after {
 
 /* Link ativo na navegação */
 .nav-link.active {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--iron-gold);
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
 }
 
 /* Skip link para acessibilidade */
@@ -145,20 +168,20 @@ body.theme-transition *:after {
 
 .nav-logo h2 {
     font-family: 'Orbitron', monospace;
-    background: linear-gradient(135deg, #ffffff, #d4d4d8);
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-weight: 300;
+    font-weight: 600;
     text-transform: none;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     font-size: 1.5rem;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .nav-logo h2:hover {
-    background: linear-gradient(135deg, #ffffff, #fbbf24);
+    background: linear-gradient(135deg, var(--iron-gold), var(--iron-red));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -222,14 +245,17 @@ body.theme-transition *:after {
 
 .nav-link:hover,
 .nav-link:focus-visible {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transform: none;
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(10px);
+    color: var(--iron-gold);
+    background: rgba(255, 215, 0, 0.15);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 10px 30px rgba(255, 215, 0, 0.3),
+        0 0 20px rgba(255, 215, 0, 0.2);
+    backdrop-filter: blur(15px);
     outline: none;
     outline-offset: 2px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 
@@ -261,12 +287,16 @@ body.theme-transition *:after {
 /* Hero */
 .hero {
     position: relative;
-    min-height: calc(100vh - var(--mobile-nav-height));
-    display: grid;
+    min-height: 100vh;
+    display: flex;
     align-items: center;
-    padding: clamp(6rem, 10vw, 9rem) 0 clamp(5rem, 8vw, 7rem);
+    justify-content: center;
+    padding: clamp(8rem, 12vw, 12rem) 0 clamp(6rem, 10vw, 8rem);
     color: var(--color-primary);
-    background: radial-gradient(120% 120% at 50% 0%, rgba(250, 204, 21, 0.08) 0%, transparent 60%), var(--color-bg-900);
+    background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 215, 0, 0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 0%, rgba(229, 62, 62, 0.08) 0%, transparent 70%),
+        var(--color-bg-900);
     overflow: hidden;
 }
 
@@ -390,28 +420,98 @@ body.theme-transition *:after {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #facc15, #f97316);
-    color: #111111;
+    background: linear-gradient(135deg, var(--iron-red), var(--iron-gold));
+    color: #ffffff;
     box-shadow: var(--shadow-pop);
+    border: 1px solid rgba(229, 62, 62, 0.5);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent);
+    transition: left 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease;
+    border-radius: 50%;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover::after {
+    width: 300px;
+    height: 300px;
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-    transform: translateY(-3px);
-    box-shadow: 0 18px 40px rgba(249, 115, 22, 0.35);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        0 20px 40px rgba(229, 62, 62, 0.4),
+        0 0 30px rgba(255, 215, 0, 0.3);
+    border-color: rgba(255, 215, 0, 0.8);
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--color-primary);
-    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 215, 0, 0.1);
+    color: var(--iron-gold);
+    border-color: rgba(255, 215, 0, 0.4);
     backdrop-filter: blur(14px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn-secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg,
+        transparent,
+        rgba(255, 215, 0, 0.1),
+        transparent);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.btn-secondary:hover::before {
+    transform: translateX(100%);
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus-visible {
-    transform: translateY(-3px);
-    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateY(-3px) scale(1.01);
+    border-color: rgba(255, 215, 0, 0.8);
+    background: rgba(255, 215, 0, 0.2);
+    box-shadow:
+        0 12px 30px rgba(255, 215, 0, 0.4),
+        0 0 20px rgba(255, 215, 0, 0.2);
+    color: #ffffff;
 }
 
 .btn-outline {
@@ -741,34 +841,33 @@ body.theme-transition *:after {
 }
 
 .hero-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
     position: relative;
     z-index: 1;
+    gap: clamp(2rem, 4vw, 3rem);
 }
 
 .hero-title {
     font-family: 'Orbitron', monospace;
     font-size: 4rem;
-    font-weight: 400;
+    font-weight: 700;
     margin-bottom: 1.2rem;
     line-height: 1.05;
-    text-transform: none;
-    letter-spacing: 2px;
-    background: linear-gradient(135deg, #ffffff 0%, #00d4ff 25%, #ff6b9d 50%, #c471ed 75%, #ffffff 100%);
-    background-size: 300% 300%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: rainbowShift 8s ease-in-out infinite;
-    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.25));
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--iron-gold);
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    animation: ironManGlow 3s ease-in-out infinite alternate;
     position: relative;
 }
+
 
 .hero-greeting {
     display: block;
@@ -781,7 +880,11 @@ body.theme-transition *:after {
 
 .hero-name {
     display: inline-block;
+    color: var(--iron-red);
+    text-shadow: 0 0 8px rgba(229, 62, 62, 0.7);
+    animation: ironManRedGlow 2.5s ease-in-out infinite alternate;
 }
+
 
 .highlight {
     background: linear-gradient(45deg, #ffd700, #ffed4e);
@@ -1224,15 +1327,26 @@ section::before {
 
 .particle {
     position: absolute;
-    width: 4px;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.8);
+    width: 3px;
+    height: 3px;
     border-radius: 50%;
-    animation: particleFloat linear infinite;
+    animation: ironManParticleFloat linear infinite;
+    box-shadow: 0 0 6px currentColor;
 }
 
-.particle:nth-child(odd) {
-    background: rgba(0, 212, 255, 0.6);
+.particle:nth-child(3n+1) {
+    background: var(--iron-gold);
+    color: var(--iron-gold);
+}
+
+.particle:nth-child(3n+2) {
+    background: var(--iron-red);
+    color: var(--iron-red);
+}
+
+.particle:nth-child(3n+3) {
+    background: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8);
     animation-duration: 15s;
 }
 
@@ -1470,10 +1584,10 @@ section::before {
 
 /* Rodapé */
 .footer {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-    color: #a1a1aa;
+    background: linear-gradient(135deg, var(--color-bg-900) 0%, var(--color-bg-800) 100%);
+    color: rgba(245, 245, 245, 0.7);
     padding: 4rem 0 1rem;
-    border-top: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: 2px solid rgba(255, 215, 0, 0.3);
     position: relative;
     z-index: 10;
     overflow: hidden;
@@ -2155,7 +2269,16 @@ section::before {
 
 .scroll-indicator:hover {
     opacity: 1;
-    transform: translateX(-50%) translateY(-5px);
+    transform: translateX(-50%) translateY(-5px) scale(1.1);
+}
+
+.scroll-indicator:hover .scroll-arrow {
+    color: var(--iron-gold);
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+.scroll-indicator:hover .scroll-text {
+    color: var(--iron-gold);
 }
 
 .scroll-arrow {
@@ -4853,6 +4976,53 @@ html {
     100% { background-position: 0% 50%; }
 }
 
+@keyframes ironManGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
+    }
+}
+
+@keyframes ironManRedGlow {
+    0% {
+        text-shadow: 0 0 8px rgba(229, 62, 62, 0.7);
+    }
+    100% {
+        text-shadow: 0 0 12px rgba(229, 62, 62, 1);
+    }
+}
+
+@keyframes energyScan {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes redEnergyFlow {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
 @keyframes glowPulse {
     0% { filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3)); }
     100% { filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 40px rgba(0, 212, 255, 0.4)); }
@@ -4957,11 +5127,27 @@ html {
     }
 }
 
-@keyframes particleFloat {
-    0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+@keyframes ironManParticleFloat {
+    0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(90vh) translateX(10px) rotate(36deg) scale(1);
+    }
+    50% {
+        transform: translateY(50vh) translateX(-20px) rotate(180deg) scale(1.2);
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(10vh) translateX(15px) rotate(324deg) scale(0.8);
+    }
+    100% {
+        transform: translateY(-10vh) translateX(0) rotate(360deg) scale(0);
+        opacity: 0;
+    }
 }
 
 /* ===== FUNDO DE ESTRELAS ===== */
